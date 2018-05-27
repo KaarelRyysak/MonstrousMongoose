@@ -11,14 +11,14 @@
         private float playerHealth;
         private int playerDashLimit;
         private int playerDashCount;
-        private GameObject player;
+        private CharacterMovementScript player;
         private Canvas _canvas;
         private Text Health;
         private Text Dash;
         private string healthText = "Health: ";
         private string dashText = "Dash: ";
 
-        public  GameObject character;
+        public GameObject character;
         public Canvas canvas;
         public Text HealthText;
         public Text DashText;
@@ -42,9 +42,9 @@
             playerHealth = 100.00f;
             playerDashLimit = 3;
             playerDashCount = 3;
-            player = Instantiate<GameObject>(character, new Vector3(0, 1, 0), gameObject.transform.rotation);
-            player.GetComponent<CharacterMovementScript>().health = playerHealth;
-            player.GetComponent<CharacterMovementScript>().dash = playerDashCount;
+            player = Instantiate<GameObject>(character, new Vector3(0, 1, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
+            player.health = playerHealth;
+            player.dash = playerDashCount;
 
             _canvas = Instantiate<Canvas>(canvas);
             Health = Instantiate<Text>(HealthText, _canvas.transform);
@@ -68,6 +68,7 @@
         public void setHealth(float health)
         {
             playerHealth = health;
+            player.health = health;
         }
         public void setDashLimit(int dashLimit)
         {

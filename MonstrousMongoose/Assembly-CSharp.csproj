@@ -62,10 +62,10 @@
     <Compile Include="Assets\Scripts\CharacterMovementScript.cs" />
     <Compile Include="Assets\Scripts\GlobalObjectScript.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>F:/Dev/Summer2017/MonstrousMongoose/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/Owen/Desktop/New folder/MonstrousMongoose/MonstrousMongoose/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>F:/Dev/Summer2017/MonstrousMongoose/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/Owen/Desktop/New folder/MonstrousMongoose/MonstrousMongoose/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>A:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
