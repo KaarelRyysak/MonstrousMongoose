@@ -25,7 +25,7 @@ public class CharacterMovementScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         controller = GetComponent<CharacterController>();
-        target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1), gameObject.transform.rotation);
+        target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 2, gameObject.transform.position.z + 1), gameObject.transform.rotation);
     }
 
     // Update is called once per frame
@@ -46,6 +46,7 @@ public class CharacterMovementScript : MonoBehaviour
 
         //Grab position of crosshair and point character in that direction
         Vector3 lookAt = target1.transform.position;
+        lookAt.y = 0.0f;
         gameObject.transform.LookAt(lookAt);
 
         //Character Movement
@@ -69,7 +70,7 @@ public class CharacterMovementScript : MonoBehaviour
         //Dash attack when right mouse is pressed
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-                Vector3 dashAt = new Vector3(target1.transform.position.x, 1, target1.transform.position.z);
+                Vector3 dashAt = new Vector3(target1.transform.position.x, 0, target1.transform.position.z);
                 gameObject.transform.position = dashAt;
         }
 
@@ -80,11 +81,13 @@ public class CharacterMovementScript : MonoBehaviour
             if (Physics.Linecast(gameObject.transform.position, target1.transform.position, out hit))
             {
                 Vector3 dashAt = ((hit.point + hit.normal) - gameObject.transform.position);
+                dashAt.y = 0.0f;
                 gameObject.GetComponent<CharacterController>().Move(dashAt * dashSpeed * Time.deltaTime);
             }
             else
             {
                 Vector3 dashAt = target1.transform.position - gameObject.transform.position;
+                dashAt.y = 0.0f;
                 gameObject.GetComponent<CharacterController>().Move(dashAt * dashSpeed * Time.deltaTime);
             }
         }
