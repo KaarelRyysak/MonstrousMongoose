@@ -42,7 +42,7 @@
             playerHealth = 100.00f;
             playerDashLimit = 3;
             playerDashCount = 3;
-            player = Instantiate<GameObject>(character);
+            player = Instantiate<GameObject>(character, new Vector3(0, 1, 0), gameObject.transform.rotation);
             player.GetComponent<CharacterMovementScript>().health = playerHealth;
             player.GetComponent<CharacterMovementScript>().dash = playerDashCount;
 

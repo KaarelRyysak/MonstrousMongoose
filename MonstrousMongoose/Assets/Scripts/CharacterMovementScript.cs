@@ -30,7 +30,7 @@
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             controller = GetComponent<CharacterController>();
-            target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z + 1), gameObject.transform.rotation);
+            target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 3, gameObject.transform.position.z + 1), gameObject.transform.rotation);
         }
 
         // Update is called once per frame
@@ -54,6 +54,7 @@
 
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target1.transform.position;
+            lookAt.y = 1.0f;
             gameObject.transform.LookAt(lookAt);
 
             //Character Movement
