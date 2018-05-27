@@ -12,13 +12,12 @@
         private Transform alpha;
         private float dashCool = 1.00f;
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
-        private CharacterController Target1Cont;
 
         public float health;
         public int dash;
         public float dashSpeed = 50.0f;
         public float speed = .50f;
-        public float rotateSpeed = 0.75f;
+        public float rotateSpeed = 0.35f;
         public float radius = 8.0f;
         public GameObject target;
         public GameObject target1 = null;
@@ -31,8 +30,7 @@
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             controller = GetComponent<CharacterController>();
-            target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 3, gameObject.transform.position.z + 1), gameObject.transform.rotation);
-            Target1Cont = target1.GetComponent<CharacterController>();
+            target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z + 1), gameObject.transform.rotation);
         }
 
         // Update is called once per frame
@@ -52,7 +50,7 @@
             //Grab mouse input and move crosshair
             mouseXInput = Input.GetAxis("Mouse X") * rotateSpeed;
             mouseYInput = Input.GetAxis("Mouse Y") * rotateSpeed;
-            Target1Cont.Move(new Vector3(mouseXInput, 0, mouseYInput));
+            target1.transform.Translate(new Vector3(mouseXInput, 0, mouseYInput), gameObject.transform);
 
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target1.transform.position;
