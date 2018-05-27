@@ -50,7 +50,7 @@
             //Grab mouse input and move crosshair
             mouseXInput = Input.GetAxis("Mouse X") * rotateSpeed;
             mouseYInput = Input.GetAxis("Mouse Y") * rotateSpeed;
-            target1.transform.Translate(new Vector3(mouseXInput, 0, mouseYInput), gameObject.transform);
+            target1.transform.Translate(new Vector3(mouseXInput, 0, mouseYInput));
 
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target1.transform.position;
