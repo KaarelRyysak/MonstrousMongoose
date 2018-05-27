@@ -79,7 +79,10 @@
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
             {
                 Vector3 dashAt = new Vector3(target1.transform.position.x, 1, target1.transform.position.z);
+                Vector3 tempCurs = target1.transform.position - gameObject.transform.position;
                 gameObject.transform.position = dashAt;
+                tempCurs.y = 1;
+                target1.transform.position = tempCurs;
                 dash -= 1;
                 Invoke("dashCooldown", dashCool);
             }
