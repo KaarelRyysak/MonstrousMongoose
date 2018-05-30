@@ -11,17 +11,21 @@
         private float playerHealth;
         private int playerDashLimit;
         private int playerDashCount;
+        private double playerRaycastDist;
         private CharacterMovementScript player;
         private Canvas _canvas;
         private Text Health;
         private Text Dash;
+        private Text RaycastDist;
         private string healthText = "Health: ";
         private string dashText = "Dash: ";
+        private string raycastDistText = "Dist: ";
 
         public GameObject character;
         public Canvas canvas;
         public Text HealthText;
         public Text DashText;
+        public Text RaycastDistText;
 
         //Ensures there is only ever one GLobal Object active at a time
         private void Awake()
@@ -42,13 +46,14 @@
             playerHealth = 100.00f;
             playerDashLimit = 3;
             playerDashCount = 3;
-            player = Instantiate<GameObject>(character, new Vector3(0, 1, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
+            player = Instantiate<GameObject>(character, new Vector3(0, 1.3f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
             player.health = playerHealth;
             player.dash = playerDashCount;
 
             _canvas = Instantiate<Canvas>(canvas);
             Health = Instantiate<Text>(HealthText, _canvas.transform);
             Dash = Instantiate<Text>(DashText, _canvas.transform);
+            RaycastDist = Instantiate<Text>(RaycastDistText, _canvas.transform);
         }
 
         //Gets and sets for player health and dashes
@@ -65,6 +70,11 @@
             return playerDashCount;
         }
 
+        public double getRaycastDist()
+        {
+            return (double)playerRaycastDist;
+        }
+
         public void setHealth(float health)
         {
             playerHealth = health;
@@ -77,6 +87,11 @@
         public void setDashCount(int dashCount)
         {
             playerDashCount = dashCount;
+        }
+
+        public void setRaycastDist(double raycastDist)
+        {
+            playerRaycastDist = raycastDist;
         }
 
         private void Update()

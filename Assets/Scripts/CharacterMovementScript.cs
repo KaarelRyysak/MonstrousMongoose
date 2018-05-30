@@ -15,8 +15,9 @@
 
         public float health;
         public int dash;
+        public double raycastDist;
         public float dashSpeed = 50.0f;
-        public float speed = .50f;
+        public float speed = .001f;
         public float rotateSpeed = 0.35f;
         public float radius = 8.0f;
         public GameObject target;
@@ -36,8 +37,10 @@
         // Update is called once per frame
         void Update()
         {
+
             globalController.setHealth(health);
             globalController.setDashCount(dash);
+            globalController.setRaycastDist(raycastDist);
 
             //Escape 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,6 +70,7 @@
 
 
             //Clamp crosshair within distance on player
+            /**
             if (Vector3.Distance(gameObject.transform.position, target1.transform.position) > radius)
             {
                 Vector3 v = target1.transform.position - gameObject.transform.position;
@@ -74,10 +78,34 @@
                 Vector3 clampedLocale = gameObject.transform.position + v;
                 target1.transform.SetPositionAndRotation(clampedLocale, new Quaternion());
             }
+			**/
 
             //Dash attack when right mouse is pressed
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
             {
+
+            	 RaycastHit hit;
+
+        		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f))
+        		{
+            		print("Found an object - distance: " + hit.distance);
+        		}
+
+            	else
+            	{
+            		hit.distance = 10f;
+            		print("Found no object");
+            	}
+            		Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
+            		
+
+            		gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+
+            		dash -= 1;
+            		Invoke("dashCooldown", dashCool);
+
+            	//Owen's lame old method
+            	/**
                 Vector3 dashAt = new Vector3(target1.transform.position.x, 1, target1.transform.position.z);
                 Vector3 tempCurs = target1.transform.position - gameObject.transform.position;
                 gameObject.transform.position = dashAt;
@@ -85,6 +113,7 @@
                 target1.transform.position = tempCurs;
                 dash -= 1;
                 Invoke("dashCooldown", dashCool);
+                **/
             }
 
         }
