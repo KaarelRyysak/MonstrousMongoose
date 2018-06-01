@@ -40,41 +40,53 @@
 
         private void Start()
         {
+            // Start player at set health
             playerHealth = 100.00f;
+            // Set limit on dashes
             playerDashLimit = 3;
+            // Start player with set dashes
             playerDashCount = 3;
+            // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
+            // Sets player health on player gameobject
             player.health = playerHealth;
+            // Sets players dashes on player gameobject
             player.dash = playerDashCount;
-
+            // Instantiates canvas prefab
             _canvas = Instantiate<Canvas>(canvas);
+            // Instantiates Health UIText prefab with canvas as parent
             Health = Instantiate<Text>(HealthText, _canvas.transform);
+            // Instantiates Dash UIText prefab with canvas as parent
             Dash = Instantiate<Text>(DashText, _canvas.transform);
         }
 
-        //Gets and sets for player health and dashes
+        // Returns players health
         public float getHealth()
         {
             return playerHealth;
         }
+        // Returns Dash limit
         public int getDashLimit()
         {
             return playerDashLimit;
         }
+        // Returns number of dashes
         public int getDashCount()
         {
             return playerDashCount;
         }
-
+        // Set health on both player gameobject and global object
         public void setHealth(float health)
         {
             playerHealth = health;
             player.health = health;
         }
+        // Set dash limit on both player gameobject and global object
         public void setDashLimit(int dashLimit)
         {
             playerDashLimit = dashLimit;
         }
+        // Set number of dashes availible on both player gameobject and global object
         public void setDashCount(int dashCount)
         {
             playerDashCount = dashCount;
@@ -82,7 +94,9 @@
 
         private void Update()
         {
+            // Updates Health prefab previously instantiated
             Health.text = healthText + getHealth();
+            // Updates Dash prefab previously instantiated
             Dash.text = dashText + getDashCount();
             
         }
