@@ -15,7 +15,6 @@
 
         public float health;
         public int dash;
-        public double raycastDist;
         public float dashSpeed = 50.0f;
         public float speed = .001f;
         public float rotateSpeed = 0.35f;
@@ -40,7 +39,7 @@
 
             globalController.setHealth(health);
             globalController.setDashCount(dash);
-            globalController.setRaycastDist(raycastDist);
+            
 
             //Escape 
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -86,7 +85,7 @@
 
             	 RaycastHit hit;
 
-        		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 10f))
+        		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15f))
         		{
             		print("Found an object - distance: " + hit.distance);
         		}

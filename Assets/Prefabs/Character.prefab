@@ -271,9 +271,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   dash: 0
-  raycastDist: 0
   dashSpeed: 50
-  speed: 0.5
+  speed: 0.25
   rotateSpeed: 0.5
   radius: 8
   target: {fileID: 1865746469178694, guid: af75ec4d63672b84683ecb7af90c77c1, type: 2}
