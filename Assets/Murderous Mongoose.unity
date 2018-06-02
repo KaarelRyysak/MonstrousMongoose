@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -958,52 +958,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &900440930
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.6064897
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 3.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881735467113686, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-      propertyPath: m_Name
-      value: Sphere
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &928219239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,6 +2160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1968890787731578, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
+  p_enemy: {fileID: 0}
   canvas: {fileID: 223719249295131864, guid: c01a9f9b0e7ed3e4290d8916a432a89b, type: 2}
   HealthText: {fileID: 114275713801429042, guid: 9e77d5d0007106b48ab48304377b5b63,
     type: 2}

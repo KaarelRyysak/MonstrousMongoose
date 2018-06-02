@@ -3,7 +3,12 @@ guid: 136ad3549afe9734bbd852182b57ac30
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - character: {instanceID: 0}
+  - P_enemy: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
+  - canvas: {instanceID: 0}
+  - HealthText: {instanceID: 0}
+  - DashText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

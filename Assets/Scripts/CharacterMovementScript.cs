@@ -1,4 +1,5 @@
-﻿namespace Assets {
+﻿namespace Assets 
+{
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
@@ -83,8 +84,7 @@
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
             {
 
-            	 RaycastHit hit;
-
+            	RaycastHit hit;
         		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15.0f))
         		{
             		print("Found an object - distance: " + hit.distance);
@@ -92,7 +92,7 @@
 
             	else
             	{
-            		hit.distance = 10.0f;
+            		hit.distance = 15.0f;
             		print("Found no object");
             	}
             	Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
