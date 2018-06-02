@@ -85,23 +85,23 @@
 
             	 RaycastHit hit;
 
-        		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15f))
+        		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15.0f))
         		{
             		print("Found an object - distance: " + hit.distance);
         		}
 
             	else
             	{
-            		hit.distance = 10f;
+            		hit.distance = 10.0f;
             		print("Found no object");
             	}
-            		Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
+            	Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
             		
 
-            		gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+            	gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
 
-            		dash -= 1;
-            		Invoke("dashCooldown", dashCool);
+            	dash -= 1;
+            	Invoke("dashCooldown", dashCool);
 
             	//Owen's lame old method
             	/**
