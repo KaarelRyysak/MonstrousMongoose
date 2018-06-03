@@ -1,7 +1,5 @@
 ﻿namespace Assets
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -24,7 +22,6 @@
         public Canvas canvas;
         public Text HealthText;
         public Text DashText;
-
 
         //Ensures there is only ever one GLobal Object active at a time
         private void Awake()
@@ -69,37 +66,44 @@
         {
             return playerHealth;
         }
+
         // Returns Dash limit
         public int getDashLimit()
         {
             return playerDashLimit;
         }
+
         // Returns number of dashes
         public int getDashCount()
         {
             return playerDashCount;
         }
+
         // Returns Enemy game object?
         public GameObject getEnemy()
         {
             return p_enemy;
         }
+
         // Returns player gameObject
         public CharacterMovementScript getPlayer()
         {
             return player;
         }
+
         // Set health on both player gameobject and global object
         public void setHealth(float health)
         {
             playerHealth = health;
             player.health = health;
         }
+
         // Set dash limit on both player gameobject and global object
         public void setDashLimit(int dashLimit)
         {
             playerDashLimit = dashLimit;
         }
+
         // Set number of dashes availible on both player gameobject and global object
         public void setDashCount(int dashCount)
         {
@@ -112,7 +116,6 @@
             Health.text = healthText + getHealth();
             // Updates Dash prefab previously instantiated
             Dash.text = dashText + getDashCount();
-            
         }
     }
 }

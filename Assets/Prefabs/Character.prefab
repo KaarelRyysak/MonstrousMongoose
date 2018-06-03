@@ -277,6 +277,7 @@ MonoBehaviour:
   radius: 8
   target: {fileID: 1865746469178694, guid: af75ec4d63672b84683ecb7af90c77c1, type: 2}
   target1: {fileID: 0}
+  attack: {fileID: 1867323892512928, guid: 0459c91333c87a540a568a7c6689f694, type: 2}
 --- !u!136 &136797205028945250
 CapsuleCollider:
   m_ObjectHideFlags: 1
