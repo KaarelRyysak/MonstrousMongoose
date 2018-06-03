@@ -85,9 +85,9 @@
             return p_enemy;
         }
         // Returns player gameObject
-        public GameObject getPlayer()
+        public CharacterMovementScript getPlayer()
         {
-            return character;
+            return player;
         }
         // Set health on both player gameobject and global object
         public void setHealth(float health)

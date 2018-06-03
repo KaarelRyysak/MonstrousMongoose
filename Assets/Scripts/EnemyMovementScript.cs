@@ -8,22 +8,23 @@
     {
     	//CharacterController controller;
     	private GlobalObjectScript globalController = GlobalObjectScript.Instance;
-    	private CharacterMovementScript characterController = CharacterMovementScript.Instance;
-    	GameObject player;
+        private CharacterMovementScript player;
+        private GameObject _player;
 
         // Use this for initialization
         void Start()
         {
         	//controller = GetComponent<CharacterController>();
         	player = globalController.getPlayer();
-        	//Debug.Log(controller);
+            _player = player.gameObject;
+        	Debug.Log(player.gameObject.name);
         }
 
         // Update is called once per frame
         void Update()
         {
         	
-        	Vector3 lookAt = characterController.getPosition();
+        	Vector3 lookAt = _player.transform.position;
             lookAt.y = 1.0f;
             gameObject.transform.LookAt(lookAt);
 			
