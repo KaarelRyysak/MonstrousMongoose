@@ -20,7 +20,7 @@
         private string dashText = "Dash: ";
 
         public GameObject character;
-        public GameObject P_enemy;
+        public GameObject p_enemy;
         public Canvas canvas;
         public Text HealthText;
         public Text DashText;
@@ -51,10 +51,9 @@
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
             // Instantiate an enemy
-            enemy = Instantiate<GameObject>(P_enemy, new Vector3(1.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
+            enemy = Instantiate<GameObject>(p_enemy, new Vector3(1.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
             // Sets player health on player gameobject
             player.health = playerHealth;
-            enemy.test = 1;
             // Sets players dashes on player gameobject
             player.dash = playerDashCount;
             // Instantiates canvas prefab
@@ -83,7 +82,12 @@
         // Returns Enemy game object?
         public GameObject getEnemy()
         {
-            return P_enemy;
+            return p_enemy;
+        }
+        // Returns player gameObject
+        public GameObject getPlayer()
+        {
+            return character;
         }
         // Set health on both player gameobject and global object
         public void setHealth(float health)
@@ -105,9 +109,9 @@
         private void Update()
         {
             // Updates Health prefab previously instantiated
-            //Health.text = healthText + getHealth();
+            Health.text = healthText + getHealth();
             // Updates Dash prefab previously instantiated
-            //Dash.text = dashText + getDashCount();
+            Dash.text = dashText + getDashCount();
             
         }
     }

@@ -6,26 +6,27 @@
 
     public class EnemyMovementScript : MonoBehaviour
     {
-    	CharacterController controller;
+    	//CharacterController controller;
     	private GlobalObjectScript globalController = GlobalObjectScript.Instance;
+    	private CharacterMovementScript characterController = CharacterMovementScript.Instance;
     	GameObject player;
-    	public int test;
 
         // Use this for initialization
         void Start()
         {
-        	controller = GetComponent<CharacterController>();
-        	player = globalController.getEnemy();
+        	//controller = GetComponent<CharacterController>();
+        	player = globalController.getPlayer();
+        	//Debug.Log(controller);
         }
 
         // Update is called once per frame
         void Update()
         {
-        	/**
-        	Vector3 lookAt = player.transform.position;
+        	
+        	Vector3 lookAt = characterController.getPosition();
             lookAt.y = 1.0f;
             gameObject.transform.LookAt(lookAt);
-			**/
+			
         }
     }
 }

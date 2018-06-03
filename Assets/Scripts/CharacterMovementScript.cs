@@ -6,6 +6,7 @@
 
     public class CharacterMovementScript : MonoBehaviour
     {
+        public static CharacterMovementScript Instance;
         CharacterController controller;
 
         private float mouseXInput;
@@ -120,6 +121,12 @@
         void dashCooldown()
         {
             dash += 1;
+        }
+
+        // Returns Position
+        public Vector3 getPosition()
+        {
+            return gameObject.transform.position;
         }
     }
 }

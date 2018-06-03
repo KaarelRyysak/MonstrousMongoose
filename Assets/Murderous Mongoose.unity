@@ -2160,7 +2160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1968890787731578, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
-  p_enemy: {fileID: 0}
+  p_enemy: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
   canvas: {fileID: 223719249295131864, guid: c01a9f9b0e7ed3e4290d8916a432a89b, type: 2}
   HealthText: {fileID: 114275713801429042, guid: 9e77d5d0007106b48ab48304377b5b63,
     type: 2}
