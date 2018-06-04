@@ -12,6 +12,7 @@
         private Transform alpha;
         private float dashCool = 1.50f;
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
+        private GameObject _holoChar;
 
         public float damage = 10.0f;
         public float health;
@@ -23,6 +24,7 @@
         public GameObject target;
         public GameObject target1 = null;
         public GameObject attack;
+        public GameObject holoChar;
 
         // Use this for initialization
         private void Start()
@@ -31,6 +33,7 @@
             Cursor.visible = false;
             controller = GetComponent<CharacterController>();
             target1 = Instantiate<GameObject>(target, new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z + 1), gameObject.transform.rotation);
+            _holoChar = Instantiate<GameObject>(holoChar, target1.transform.position, gameObject.transform.rotation);
         }
 
         // Update is called once per frame
@@ -52,6 +55,16 @@
             mouseYInput = Input.GetAxis("Mouse Y") * rotateSpeed;
             target1.transform.Translate(new Vector3(mouseXInput, 0, mouseYInput));
 
+            _holoChar.transform.SetPositionAndRotation(target1.transform.position, gameObject.transform.rotation);
+
+            if (Vector3.Distance(gameObject.transform.position, _holoChar.transform.position) > radius)
+            {
+                Vector3 v = _holoChar.transform.position - gameObject.transform.position;
+                v = Vector3.ClampMagnitude(v, radius);
+                Vector3 clampedLocale = gameObject.transform.position + v;
+                _holoChar.transform.SetPositionAndRotation(clampedLocale, gameObject.transform.rotation);
+            }
+
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target1.transform.position;
             lookAt.y = 1.0f;
@@ -65,17 +78,6 @@
             }
             controller.Move(characterMovement * speed);
 
-            //Clamp crosshair within distance on player
-            /**
-            if (Vector3.Distance(gameObject.transform.position, target1.transform.position) > radius)
-            {
-                Vector3 v = target1.transform.position - gameObject.transform.position;
-                v = Vector3.ClampMagnitude(v, radius);
-                Vector3 clampedLocale = gameObject.transform.position + v;
-                target1.transform.SetPositionAndRotation(clampedLocale, new Quaternion());
-            }
-			**/
-
             //Dash attack when right mouse is pressed
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
             {
@@ -84,7 +86,7 @@
                 {
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position),0.0f, 15.0f);
+                        hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position), 0.0f, 15.0f);
                         print("Found an Enemy - of type: " + hit.transform.gameObject.name);
                         hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(damage);
                         print(hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
@@ -103,24 +105,8 @@
                     gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
                 }
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
-
-                
-
-                //Instantiate<GameObject>(attack, gameObject.transform.position, gameObject.transform.rotation);
-
                 dash -= 1;
                 Invoke("dashCooldown", dashCool);
-
-                //Owen's lame old method
-                /**
-                Vector3 dashAt = new Vector3(target1.transform.position.x, 1, target1.transform.position.z);
-                Vector3 tempCurs = target1.transform.position - gameObject.transform.position;
-                gameObject.transform.position = dashAt;
-                tempCurs.y = 1;
-                target1.transform.position = tempCurs;
-                dash -= 1;
-                Invoke("dashCooldown", dashCool);
-                **/
             }
         }
 
