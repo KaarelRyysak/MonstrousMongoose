@@ -13,6 +13,7 @@
         private float dashCool = 1.50f;
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
 
+        public float damage = 10.0f;
         public float health;
         public int dash;
         public float dashSpeed = 50.0f;
@@ -81,18 +82,31 @@
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15.0f))
                 {
-                    print("Found an object - distance: " + hit.distance);
+                    if (hit.transform.gameObject.CompareTag("Enemy"))
+                    {
+                        hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position),0.0f, 15.0f);
+                        print("Found an Enemy - of type: " + hit.transform.gameObject.name);
+                        hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(damage);
+                        print(hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
+                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                    }
+                    else
+                    {
+                        print("Found an object - distance: " + hit.distance);
+                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                    }
                 }
                 else
                 {
                     hit.distance = 15.0f;
                     print("Found no object");
+                    gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
                 }
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
 
-                gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                
 
-                Instantiate<GameObject>(attack, gameObject.transform.position, gameObject.transform.rotation);
+                //Instantiate<GameObject>(attack, gameObject.transform.position, gameObject.transform.rotation);
 
                 dash -= 1;
                 Invoke("dashCooldown", dashCool);
