@@ -12,8 +12,8 @@
         private CharacterMovementScript player;
         private EnemyMovementScript enemy;
         private Canvas _canvas;
-        private Text Health;
-        private Text Dash;
+        private Text HealthTextObject;
+        private Text DashTextObject;
         private string healthText = "Health: ";
         private string dashText = "Dash: ";
 
@@ -48,7 +48,7 @@
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
             // Instantiate an enemy
-            enemy = Instantiate<GameObject>(p_enemy, new Vector3(1.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
+            enemy = Instantiate<GameObject>(p_enemy, new Vector3(3.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
             // Sets player health on player gameobject
             player.health = playerHealth;
             // Sets players dashes on player gameobject
@@ -56,9 +56,9 @@
             // Instantiates canvas prefab
             _canvas = Instantiate<Canvas>(canvas);
             // Instantiates Health UIText prefab with canvas as parent
-            Health = Instantiate<Text>(HealthText, _canvas.transform);
+            HealthTextObject = Instantiate<Text>(HealthText, _canvas.transform);
             // Instantiates Dash UIText prefab with canvas as parent
-            Dash = Instantiate<Text>(DashText, _canvas.transform);
+            DashTextObject = Instantiate<Text>(DashText, _canvas.transform);
         }
 
         // Returns players health
@@ -113,9 +113,9 @@
         private void Update()
         {
             // Updates Health prefab previously instantiated
-            Health.text = healthText + getHealth();
+            HealthTextObject.text = healthText + getHealth();
             // Updates Dash prefab previously instantiated
-            Dash.text = dashText + getDashCount();
+            DashTextObject.text = dashText + getDashCount();
         }
     }
 }

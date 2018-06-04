@@ -14,7 +14,7 @@
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
         private GameObject _holoChar;
 
-        public float damage = 10.0f;
+        public float dashDamage = 10.0f;
         public float health;
         public int dash;
         public float dashSpeed = 50.0f;
@@ -88,9 +88,14 @@
                     {
                         hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position), 0.0f, 15.0f);
                         print("Found an Enemy - of type: " + hit.transform.gameObject.name);
-                        hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(damage);
+                        hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
                         print(hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
                         gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+
+                        //Continue past the enemy
+                        RaycastHit hit1;
+                        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit1, (15.0f - hit.distance), enemy);
+                        gameObject.transform.Translate(Vector3.forward * (hit1.distance - 0.5f));
                     }
                     else
                     {

@@ -9,7 +9,7 @@
 
         private CharacterMovementScript player;
         private GameObject _player;
-        private float Health = 50.0f;
+        private float health = 50.0f;
 
         // Use this for initialization
         private void Start()
@@ -26,7 +26,7 @@
             Vector3 lookAt = _player.transform.position;
             lookAt.y = 1.0f;
             gameObject.transform.LookAt(lookAt);
-            if (Health <= 0.0f)
+            if (health <= 0.0f)
             {
                 Destroy(gameObject);
             }
@@ -34,12 +34,12 @@
 
         public void takeDamage(float Dam)
         {
-            Health -= Dam;
+            health -= Dam;
         }
 
         public float getHealth()
         {
-            return Health;
+            return health;
         }
     }
 }

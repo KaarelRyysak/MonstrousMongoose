@@ -24,8 +24,8 @@ GameObject:
   - component: {fileID: 135294569353120884}
   - component: {fileID: 114418752131756978}
   - component: {fileID: 143680325060805092}
-  m_Layer: 0
-  m_Name: P_enemy
+  m_Layer: 8
+  m_Name: p_enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 33017037914525696}
   - component: {fileID: 23233416287434184}
   - component: {fileID: 65501737064746900}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
