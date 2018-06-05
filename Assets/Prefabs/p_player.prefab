@@ -269,13 +269,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d450db6458939f4439b28168984ca6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  dashDamage: 10
   health: 0
   dash: 0
   dashSpeed: 50
-  speed: 0.25
+  speed: 0.2
   rotateSpeed: 0.5
   radius: 8
+  dashLength: 8
   target: {fileID: 1865746469178694, guid: af75ec4d63672b84683ecb7af90c77c1, type: 2}
   target1: {fileID: 0}
   attack: {fileID: 1867323892512928, guid: 0459c91333c87a540a568a7c6689f694, type: 2}

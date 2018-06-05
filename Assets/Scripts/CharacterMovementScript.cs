@@ -20,7 +20,8 @@
         public float dashSpeed = 50.0f;
         public float speed = .001f;
         public float rotateSpeed = 0.35f;
-        public float radius = 8.0f;
+        public float radius = 4.0f;
+        public float dashLength = 4.0f;
         public GameObject target;
         public GameObject target1 = null;
         public GameObject attack;
@@ -67,7 +68,7 @@
 
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target1.transform.position;
-            lookAt.y = 1.0f;
+            lookAt.y = gameObject.transform.position.y;
             gameObject.transform.LookAt(lookAt);
 
             //Character Movement
@@ -82,32 +83,43 @@
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
             {
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 15.0f))
+                int defaultLayerMask = 1 << 9;
+                defaultLayerMask = ~defaultLayerMask;
+
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, dashLength, defaultLayerMask))
                 {
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position), 0.0f, 15.0f);
+                        //hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position), 0.0f, 15.0f);
                         print("Found an Enemy - of type: " + hit.transform.gameObject.name);
                         hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
                         print(hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
-                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                        gameObject.transform.Translate(Vector3.forward * (hit.distance));
 
-                        //Continue past the enemy
+                        //Code to continue past the enemy
+
+                        //Create the layer mask and invert it.
+                        int enemyLayerMask = 1 << 8;
+                        enemyLayerMask = ~enemyLayerMask;
+
                         RaycastHit hit1;
-                        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit1, (15.0f - hit.distance), enemy);
-                        gameObject.transform.Translate(Vector3.forward * (hit1.distance - 0.5f));
+
+                        //Fire the ray which passes through enemies to find the next collision
+                        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit1, (dashLength - hit.distance), enemyLayerMask);
+                        //Tp there lol
+                        gameObject.transform.Translate(Vector3.forward * (hit1.distance));
                     }
                     else
                     {
                         print("Found an object - distance: " + hit.distance);
-                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.6f));
                     }
                 }
                 else
                 {
-                    hit.distance = 15.0f;
-                    print("Found no object");
-                    gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                    hit.distance = dashLength;
+                    print("Distance dashed: " + hit.distance);
+                    gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.6f));
                 }
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
                 dash -= 1;
