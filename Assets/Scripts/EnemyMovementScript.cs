@@ -29,7 +29,7 @@
             gameObject.transform.LookAt(lookAt);
 
             //Enemy moves toward player
-            gameObject.transform.Translate(Vector3.forward * movementSpeed);
+            //gameObject.transform.Translate(Vector3.forward * movementSpeed);
 
             //Destroy the object if health reaches 0
             if (health <= 0.0f)

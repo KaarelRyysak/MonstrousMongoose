@@ -81,17 +81,36 @@
 
             //Dash attack when right mouse is pressed
             if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
-            {
-                RaycastHit hit;
-                int defaultLayerMask = 1 << 9;
-                defaultLayerMask = ~defaultLayerMask;
+            {   
+                //Declare layermasks and combine them
+                int layerMask0 = 1 << 0;
+                int layerMask8 = 1 << 8;
+                int finalMask = ((1 << 0) | (1 << 8));
 
-                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, dashLength, defaultLayerMask))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, dashLength, layerMask0))
                 {
+                    //Create the layer mask
+                    int enemyLayerMask = 1 << 10;
+                    
+
+                    RaycastHit hit1;
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit1, hit.distance, enemyLayerMask));
+                    {
+
+                        print("Found an Enemy - of type: " + hit1.transform.gameObject.name);
+                        hit1.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
+                        print(hit1.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
+
+                    }
+                print("Distance dashed: " + hit.distance);
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
+                gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+
+                    /**
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        //hit.distance = Mathf.Clamp(Vector3.Distance(gameObject.transform.position, target1.transform.position), 0.0f, 15.0f);
-                        print("Found an Enemy - of type: " + hit.transform.gameObject.name);
+                        //print("Found an Enemy - of type: " + hit.transform.gameObject.name);
                         hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
                         print(hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
                         gameObject.transform.Translate(Vector3.forward * (hit.distance));
@@ -113,15 +132,15 @@
                     {
                         print("Found an object - distance: " + hit.distance);
                         gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.6f));
-                    }
+                    }**/
                 }
                 else
                 {
                     hit.distance = dashLength;
                     print("Distance dashed: " + hit.distance);
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
                     gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.6f));
                 }
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
                 dash -= 1;
                 Invoke("dashCooldown", dashCool);
             }
