@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 117902550}
   - component: {fileID: 117902549}
   - component: {fileID: 117902548}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 433232387}
   - component: {fileID: 433232386}
   - component: {fileID: 433232385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barricade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 730070118}
   - component: {fileID: 730070117}
   - component: {fileID: 730070116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barricade (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 803572692}
   - component: {fileID: 803572691}
   - component: {fileID: 803572690}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barricade (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 1041997011}
   - component: {fileID: 1041997010}
   - component: {fileID: 1041997009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 1645672049}
   - component: {fileID: 1645672048}
   - component: {fileID: 1645672047}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1086,7 +1086,7 @@ GameObject:
   - component: {fileID: 1738375876}
   - component: {fileID: 1738375875}
   - component: {fileID: 1738375874}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   - component: {fileID: 1886878524}
   - component: {fileID: 1886878523}
   - component: {fileID: 1886878522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Barricade (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ad3549afe9734bbd852182b57ac30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 1968890787731578, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
+  character: {fileID: 1770425977016338, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
   p_enemy: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
   canvas: {fileID: 223719249295131864, guid: c01a9f9b0e7ed3e4290d8916a432a89b, type: 2}
   HealthText: {fileID: 114275713801429042, guid: 9e77d5d0007106b48ab48304377b5b63,

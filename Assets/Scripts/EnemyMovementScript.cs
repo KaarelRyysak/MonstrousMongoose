@@ -18,7 +18,6 @@
             //controller = GetComponent<CharacterController>();
             player = globalController.getPlayer();
             _player = player.gameObject;
-            Debug.Log(player.gameObject.name);
         }
 
         // Update is called once per frame
