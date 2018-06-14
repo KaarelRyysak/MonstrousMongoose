@@ -57,20 +57,37 @@
             mouseYInput = Input.GetAxis("Mouse Y") * rotateSpeed;
             target.transform.Translate(new Vector3(mouseXInput, 0, mouseYInput));
 
-            _holoChar.transform.SetPositionAndRotation(target.transform.position, gameObject.transform.rotation);
-
-            if (Vector3.Distance(gameObject.transform.position, _holoChar.transform.position) > radius)
-            {
-                Vector3 v = _holoChar.transform.position - gameObject.transform.position;
-                v = Vector3.ClampMagnitude(v, radius);
-                Vector3 clampedLocale = gameObject.transform.position + v;
-                _holoChar.transform.SetPositionAndRotation(clampedLocale, gameObject.transform.rotation);
-            }
-
             //Grab position of crosshair and point character in that direction
             Vector3 lookAt = target.transform.position;
             lookAt.y = gameObject.transform.position.y;
             gameObject.transform.LookAt(lookAt);
+
+            //Cast a ray in front of the character
+            int collisionLayerMask = 1 << 8;
+            Ray forwardRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+            RaycastHit collisionHit;
+            
+
+            //Position holoChar
+            bool mainRayCollision = false;
+            if ( (Physics.Raycast(forwardRay, out collisionHit, dashLength, collisionLayerMask, QueryTriggerInteraction.Ignore)) && (collisionHit.distance < (Vector3.Distance(gameObject.transform.position, target.transform.position) )) )
+            {
+                mainRayCollision = true;
+                _holoChar.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                _holoChar.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
+            }
+            else
+            {
+                _holoChar.transform.SetPositionAndRotation(target.transform.position, gameObject.transform.rotation);
+
+               if (Vector3.Distance(gameObject.transform.position, _holoChar.transform.position) > radius)
+                {
+                    Vector3 v = _holoChar.transform.position - gameObject.transform.position;
+                    v = Vector3.ClampMagnitude(v, radius);
+                    Vector3 clampedLocale = gameObject.transform.position + v;
+                    _holoChar.transform.SetPositionAndRotation(clampedLocale, gameObject.transform.rotation);
+                }
+            }
 
             //Character Movement
             Vector3 characterMovement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -99,17 +116,15 @@
                 }
                 Destroy(_targetAnalyzer);
                 
-
-                Ray ray = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-                if (Physics.Raycast(ray, out hit, dashLength, 1 << 0 | 1 << 8,QueryTriggerInteraction.Ignore))
+                if (mainRayCollision)
                 {
-                        print("Distance dashed: " + hit.distance);
-                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 1);
-                        gameObject.transform.Translate(Vector3.forward * (hit.distance - 0.5f));
+                        print("Distance dashed: " + collisionHit.distance);
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
+                        gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
                 }
                 else
                 {
-                    distanceTravelled = Mathf.Clamp((Vector3.Distance(gameObject.transform.position, target.transform.position) - 0.6f), 0.0f, dashLength);
+                    distanceTravelled = Mathf.Clamp((Vector3.Distance(gameObject.transform.position, target.transform.position) - 0.01f), 0.0f, dashLength);
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distanceTravelled, Color.red, 1);
                     Debug.Log(distanceTravelled);
                     gameObject.transform.Translate(Vector3.forward * distanceTravelled);

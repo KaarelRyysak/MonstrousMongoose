@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ad3549afe9734bbd852182b57ac30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 1770425977016338, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
+  character: {fileID: 1968890787731578, guid: fbc4004a817129348bd2202d53819ecb, type: 2}
   p_enemy: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
   canvas: {fileID: 223719249295131864, guid: c01a9f9b0e7ed3e4290d8916a432a89b, type: 2}
   HealthText: {fileID: 114275713801429042, guid: 9e77d5d0007106b48ab48304377b5b63,

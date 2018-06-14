@@ -4,8 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - character: {instanceID: 0}
-  - P_enemy: {fileID: 1123073779026292, guid: 7313dea2a385d054ea66570db13685c3, type: 2}
+  - character: {fileID: 1770425977016338, guid: fbc4004a817129348bd2202d53819ecb,
+      type: 2}
+  - p_enemy: {instanceID: 0}
   - canvas: {instanceID: 0}
   - HealthText: {instanceID: 0}
   - DashText: {instanceID: 0}
