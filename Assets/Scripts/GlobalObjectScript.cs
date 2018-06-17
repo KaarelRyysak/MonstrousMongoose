@@ -2,7 +2,11 @@
 {
     using UnityEngine;
     using UnityEngine.UI;
+    using System.Collections.Generic;
+    using System.Runtime.Serialization.Formatters.Binary;
+    using System.IO;
 
+    [System.Serializable]
     public class GlobalObjectScript : MonoBehaviour
     {
         public static GlobalObjectScript Instance;
@@ -16,6 +20,7 @@
         private Text DashTextObject;
         private string healthText = "Health: ";
         private string dashText = "Dash: ";
+        private int num;
 
         public GameObject character;
         public GameObject p_enemy;
@@ -118,7 +123,26 @@
         public void setDashCount(int dashCount)
         {
             playerDashCount = dashCount;
-        
-        }    
+
+        }
+
+        public void saveGame()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(Application.persistentDataPath + "/Save.save");
+            bf.Serialize(file, num);
+            file.Close();
+        }
+
+        public void loadGame()
+        {
+            if (File.Exists(Application.persistentDataPath + "/Save.save"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/Save.save", FileMode.Open);
+                num = (int)bf.Deserialize(file);
+                file.Close();
+            }
+        }
     }
 }
