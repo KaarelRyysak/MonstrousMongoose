@@ -9,7 +9,7 @@
 
         private CharacterMovementScript player;
         private GameObject _player;
-        private float health = 50.0f;
+        private float health = 20.0f;
         private float movementSpeed = 0.1f;
 
         // Use this for initialization

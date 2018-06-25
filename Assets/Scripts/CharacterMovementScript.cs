@@ -15,14 +15,14 @@
         private GameObject _holoChar;
         private float distanceTravelled;
 
-        public float dashDamage = 10.0f;
-        public float health;
-        public int dash;
-        public float dashSpeed = 50.0f;
-        public float speed = .001f;
-        public float rotateSpeed = 0.35f;
-        public float radius = 8.0f;
-        public float dashLength = 8.0f;
+        private float dashDamage = 10.0f;
+        private float health;
+        private int dashCount;
+        private int dashLimit;
+        private float speed = 0.2f;
+        private float rotateSpeed = 0.35f;
+        private float radius = 12.0f;
+        private float dashLength = 12.0f;
         public GameObject p_target;
         public GameObject target = null;
         public GameObject attack;
@@ -41,8 +41,6 @@
         // Update is called once per frame
         private void Update()
         {
-            globalController.setHealth(health);
-            globalController.setDashCount(dash);
 
             //Escape
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -50,6 +48,11 @@
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Application.Quit();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                GlobalObjectScript.Instance.saveGame();
             }
 
             //Grab mouse input and move crosshair
@@ -95,10 +98,11 @@
             {
                 characterMovement.Normalize();
             }
+            
             controller.Move(characterMovement * speed);
 
             //Dash attack when right mouse is pressed
-            if (Input.GetKeyDown(KeyCode.Mouse1) && dash > 0)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && dashCount > 0)
             {
                 RaycastHit hit;
                 RaycastHit hit1;
@@ -110,8 +114,8 @@
                     if (hit1.transform.gameObject.CompareTag("Enemy"))
                     {
                         hit1.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
-                        print(hit1.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
-                        Debug.Log("hit");
+                        print("Enemy Health:" +hit1.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
+                        
                     }
                 }
                 Destroy(_targetAnalyzer);
@@ -129,15 +133,50 @@
                     Debug.Log(distanceTravelled);
                     gameObject.transform.Translate(Vector3.forward * distanceTravelled);
                 }
-                dash -= 1;
+                dashCount -= 1;
                 Invoke("dashCooldown", dashCool);
             }
             
+             
+        }
+        //SETTERS AND GETTERS
+
+        // Sets players health
+        public void setHealth(float i)
+        {
+            health = i;
+        }
+        // Returns players health
+        public float getHealth()
+        {
+            return health;
+        }
+
+        // Sets players dash count
+        public void setDashCount(int i)
+        {
+            dashCount = i;
+        }
+        // Returns players dash count
+        public int getDashCount()
+        {
+            return dashCount;
+        }
+
+        // Sets players dash count
+        public void setDashLimit(int i)
+        {
+            dashLimit = i;
+        }
+        // Returns players dash limit
+        public int getDashLimit()
+        {
+            return dashLimit;
         }
 
         private void dashCooldown()
         {
-            dash += 1;
+            dashCount += 1;
         }
 
         // Returns Position
