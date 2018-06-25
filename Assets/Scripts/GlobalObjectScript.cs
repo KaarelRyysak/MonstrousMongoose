@@ -6,6 +6,7 @@
     using System.Runtime.Serialization.Formatters.Binary;
     using System.IO;
     using System.Runtime.Serialization;
+    using UnityEngine.SceneManagement;
 
     [System.Serializable]
     public class GlobalObjectScript : MonoBehaviour
@@ -46,37 +47,25 @@
 
         private void Start()
         {
+            loadGame();
             // Start player at set health
             defaultPlayerHealth = 100.00f;
             // Set limit on dashes
             defaultPlayerDashLimit = 3;
             // Start player with set dashes
             playerDashCount = 3;
-            // Instantiate player
-            player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
-            // Instantiate an enemy
-            enemy = Instantiate<GameObject>(p_enemy, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
-            // Sets player health on player gameobject
-            player.setHealth(defaultPlayerHealth);
-            // Sets players dashes on player gameobject
-            player.setDashCount(defaultPlayerDashLimit);
-            // Sets players dash limit on player gameobject
-            player.setDashLimit(defaultPlayerDashLimit);
-            // Instantiates canvas prefab
-            _canvas = Instantiate<Canvas>(canvas);
-            // Instantiates Health UIText prefab with canvas as parent
-            HealthTextObject = Instantiate<Text>(HealthText, _canvas.transform);
-            // Instantiates Dash UIText prefab with canvas as parent
-            DashTextObject = Instantiate<Text>(DashText, _canvas.transform);
         }
 
 
         private void Update()
         {
-            // Updates Health prefab previously instantiated
-            HealthTextObject.text = healthString + player.getHealth();
-            // Updates Dash prefab previously instantiated
-            DashTextObject.text = dashString + player.getDashCount();
+            if (!SceneManager.GetActiveScene().name.Equals("Menu"))
+            {
+                // Updates Health prefab previously instantiated
+                HealthTextObject.text = healthString + player.getHealth();
+                // Updates Dash prefab previously instantiated
+                DashTextObject.text = dashString + player.getDashCount();
+            }
         }
 
         //SETTERS AND GETTERS
@@ -111,6 +100,26 @@
             return player;
         }
 
+        public void startLevel ()
+        {
+            // Instantiate player
+            player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
+            // Instantiate an enemy
+            enemy = Instantiate<GameObject>(p_enemy, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
+            // Sets player health on player gameobject
+            player.setHealth(defaultPlayerHealth);
+            // Sets players dashes on player gameobject
+            player.setDashCount(defaultPlayerDashLimit);
+            // Sets players dash limit on player gameobject
+            player.setDashLimit(defaultPlayerDashLimit);
+            // Instantiates canvas prefab
+            _canvas = Instantiate<Canvas>(canvas);
+            // Instantiates Health UIText prefab with canvas as parent
+            HealthTextObject = Instantiate<Text>(HealthText, _canvas.transform);
+            // Instantiates Dash UIText prefab with canvas as parent
+            DashTextObject = Instantiate<Text>(DashText, _canvas.transform);
+        }
+
         public void saveGame()
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -121,6 +130,7 @@
                 try
                 {
                     bf.Serialize(file, num);
+                    print(Application.persistentDataPath + "/Save.save");
                 }
                 catch (SerializationException e) 
                 {

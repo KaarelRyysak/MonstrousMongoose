@@ -13,7 +13,7 @@
 
         public void startGame ()
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene("Murderous Mongoose", LoadSceneMode.Single);
         }
 
         public void optionsMenu ()
@@ -31,6 +31,11 @@
         public void quitGame ()
         {
             Application.Quit();
+        }
+
+        public void saveGame ()
+        {
+            GlobalObjectScript.Instance.saveGame();
         }
 
         public void setRow1To1 ()
