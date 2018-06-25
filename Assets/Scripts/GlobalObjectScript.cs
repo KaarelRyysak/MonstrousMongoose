@@ -100,6 +100,12 @@
             return player;
         }
 
+        // Returns num
+        public int getNum()
+        {
+            return num;
+        }
+
         public void startLevel ()
         {
             // Instantiate player

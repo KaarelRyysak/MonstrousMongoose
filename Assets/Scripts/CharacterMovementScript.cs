@@ -105,16 +105,15 @@
             if (Input.GetKeyDown(KeyCode.Mouse1) && dashCount > 0)
             {
                 RaycastHit hit;
-                RaycastHit hit1;
 
                 GameObject _targetAnalyzer = Instantiate<GameObject>(p_TargetAnalyzer, target.transform.position, target.transform.rotation);
 
-                if (Physics.Linecast(gameObject.transform.position, _targetAnalyzer.transform.position, out hit1))
+                if (Physics.Linecast(gameObject.transform.position, _targetAnalyzer.transform.position, out hit))
                 {
-                    if (hit1.transform.gameObject.CompareTag("Enemy"))
+                    if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        hit1.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
-                        print("Enemy Health:" +hit1.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
+                        hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
+                        print("Enemy Health:" +hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
                         
                     }
                 }
