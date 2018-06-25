@@ -52,7 +52,7 @@
 
             if (Input.GetKeyDown(KeyCode.F1))
             {
-                GlobalObjectScript.Instance.saveGame();
+                //GlobalObjectScript.Instance.saveGame();
             }
 
             //Grab mouse input and move crosshair

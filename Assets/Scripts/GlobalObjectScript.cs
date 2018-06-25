@@ -23,7 +23,7 @@
         private Text DashTextObject;
         private string healthString = "Health: ";
         private string dashString = "Dash: ";
-        private int num;
+        
 
         public GameObject character;
         public GameObject p_enemy;
@@ -47,7 +47,7 @@
 
         private void Start()
         {
-            loadGame();
+            SaveManager.Instance.loadDataFromDisk();
             // Start player at set health
             defaultPlayerHealth = 100.00f;
             // Set limit on dashes
@@ -100,12 +100,6 @@
             return player;
         }
 
-        // Returns num
-        public int getNum()
-        {
-            return num;
-        }
-
         public void startLevel ()
         {
             // Instantiate player
@@ -126,37 +120,84 @@
             DashTextObject = Instantiate<Text>(DashText, _canvas.transform);
         }
 
-        public void saveGame()
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            using (FileStream file = File.Create(Application.persistentDataPath + "/Save.save"))
-            {
-                print("Save was attempted");
-                num = 3;
-                try
-                {
-                    bf.Serialize(file, num);
-                    print(Application.persistentDataPath + "/Save.save");
-                }
-                catch (SerializationException e) 
-                {
-                    print("Failed to serialize. Reason: " + e.Message);
-                }
-                file.Close();
-            }
+    }
 
-            
+    public class SaveGlob
+    {
+        public static SaveGlob Instance;
+        public int settingsField1;
+        public int settingsField2;
+        public int settingsField3;
+
+        // Sets settingsField1
+        public void setSettingsField1(int newSettingsField1)
+        {
+            settingsField1 = newSettingsField1;
+        }
+        // Returns settingsField1
+        public int getSettingsField1()
+        {
+            return settingsField1;
         }
 
-        public void loadGame()
+        // Sets settingsField2
+        public void setSettingsField2(int newSettingsField2)
         {
-            if (File.Exists(Application.persistentDataPath + "/Save.save"))
+            settingsField2 = newSettingsField2;
+        }
+        // Returns settingsField2
+        public int getSettingsField2()
+        {
+            return settingsField2;
+        }
+
+        // Sets settingsField3
+        public void setSettingsField3(int newSettingsField2)
+        {
+            settingsField2 = newSettingsField2;
+        }
+        // Returns settingsField3
+        public int getSettingsField3()
+        {
+            return settingsField3;
+        }
+    }
+
+    public class SaveManager
+    {
+        public static SaveManager Instance;
+        private SaveGlob saveGlob;    // the Dictionary used to save and load data to/from disk
+        protected string savePath;
+        public SaveManager()
+        {
+         this.savePath = Application.persistentDataPath + "/save.dat";
+         this.saveGlob = new SaveGlob();
+         this.loadDataFromDisk();
+        }
+         /**
+          * Saves the save data to the disk
+          */
+        public void saveDataToDisk()
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Create(savePath);
+            bf.Serialize(file, saveGlob);
+            file.Close();
+        }
+ 
+        /**
+         * Loads the save data from the disk
+         */
+        public void loadDataFromDisk()
+        {
+            if(File.Exists(savePath))
             {
                 BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "/Save.save", FileMode.Open);
-                num = (int)bf.Deserialize(file);
+                FileStream file = File.Open(savePath, FileMode.Open);
+                this.saveGlob = (SaveGlob)bf.Deserialize(file);
                 file.Close();
             }
         }
     }
+    
 }

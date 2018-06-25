@@ -7,29 +7,19 @@
 
     public class StartMenuScript : MonoBehaviour
     {
-        public static StartMenuScript Instance;
+        private GlobalObjectScript globalController = GlobalObjectScript.Instance;
         public Canvas _startMenu;
         public Canvas _optionsMenu;
-        public Image row1_1;
-        public Text row1;
-        private int row1Setting;
+        public Text row1Text;
+        public Text row2Text;
+        public Text row3Text;
 
         private void Start()
         {
-            GlobalObjectScript.Instance.loadGame();
-            switch (GlobalObjectScript.Instance.getNum())
-            {
-                case 1:
-                row1.text = "1";
-                break;
-                case 2:
-                row1.text = "2";
-                break;
-                case 3:
-                row1.text = "3";
-                break;
-            }
-            
+            SaveManager.Instance.loadDataFromDisk();
+            row1Text.text = "1. Current Value [" + SaveGlob.Instance.settingsField1 + "]";
+            row2Text.text = "2. Current Value [" + SaveGlob.Instance.settingsField2 + "]";
+            //print("Setting value is: " + SaveGlob.Instance.getSettingsField1());
             
         }
         public void startGame ()
@@ -56,27 +46,46 @@
 
         public void saveGame ()
         {
-            GlobalObjectScript.Instance.saveGame();
+            SaveManager.Instance.saveDataToDisk();
             
         }
 
         public void setRow1To1 ()
         {
-            row1Setting = 1;
-            row1_1.color = Color.red;
-            row1.text = "1";
+            row1Text.text = "1. Current Value [1]";
+            SaveGlob.Instance.setSettingsField1(1);
         }
 
         public void setRow1To2 ()
         {
-            row1Setting = 2;
-            row1.text = "2";
+            row1Text.text = "1. Current Value [2]";
+            
+            SaveGlob.Instance.setSettingsField1(2);
         }
 
         public void setRow1To3 ()
         {
-            row1Setting = 3;
-            row1.text = "3";
+            row1Text.text = "1. Current Value [3]";
+            SaveGlob.Instance.setSettingsField1(3);
+        }
+
+        public void setRow2To1 ()
+        {
+            row2Text.text = "2. Current Value [1]";
+            SaveGlob.Instance.setSettingsField2(1);
+        }
+
+        public void setRow2To2 ()
+        {
+            row2Text.text = "2. Current Value [2]";
+            
+            SaveGlob.Instance.setSettingsField2(2);
+        }
+
+        public void setRow2To3 ()
+        {
+            row2Text.text = "2. Current Value [3]";
+            SaveGlob.Instance.setSettingsField2(3);
         }
     }
 }
