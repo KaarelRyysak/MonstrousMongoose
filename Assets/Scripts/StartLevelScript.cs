@@ -1,17 +1,13 @@
 ﻿namespace Assets
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using UnityEngine;
 
     public class StartLevelScript : MonoBehaviour
     {
-
         // Use this for initialization
-        void Awake()
+        private void Awake()
         {
             GlobalObjectScript.Instance.startLevel();
         }
-
     }
 }

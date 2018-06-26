@@ -28,6 +28,7 @@
         public GameObject attack;
         public GameObject holoChar;
         public GameObject p_TargetAnalyzer;
+
         // Use this for initialization
         private void Start()
         {
@@ -41,7 +42,6 @@
         // Update is called once per frame
         private void Update()
         {
-
             //Escape
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -69,11 +69,10 @@
             int collisionLayerMask = 1 << 8;
             Ray forwardRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
             RaycastHit collisionHit;
-            
 
             //Position holoChar
             bool mainRayCollision = false;
-            if ( (Physics.Raycast(forwardRay, out collisionHit, dashLength, collisionLayerMask, QueryTriggerInteraction.Ignore)) && (collisionHit.distance < (Vector3.Distance(gameObject.transform.position, target.transform.position) )) )
+            if ((Physics.Raycast(forwardRay, out collisionHit, dashLength, collisionLayerMask, QueryTriggerInteraction.Ignore)) && (collisionHit.distance < (Vector3.Distance(gameObject.transform.position, target.transform.position))))
             {
                 mainRayCollision = true;
                 _holoChar.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
@@ -83,7 +82,7 @@
             {
                 _holoChar.transform.SetPositionAndRotation(target.transform.position, gameObject.transform.rotation);
 
-               if (Vector3.Distance(gameObject.transform.position, _holoChar.transform.position) > radius)
+                if (Vector3.Distance(gameObject.transform.position, _holoChar.transform.position) > radius)
                 {
                     Vector3 v = _holoChar.transform.position - gameObject.transform.position;
                     v = Vector3.ClampMagnitude(v, radius);
@@ -98,7 +97,7 @@
             {
                 characterMovement.Normalize();
             }
-            
+
             controller.Move(characterMovement * speed);
 
             //Dash attack when right mouse is pressed
@@ -113,17 +112,16 @@
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
                         hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
-                        print("Enemy Health:" +hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
-                        
+                        print("Enemy Health:" + hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
                     }
                 }
                 Destroy(_targetAnalyzer);
-                
+
                 if (mainRayCollision)
                 {
-                        print("Distance dashed: " + collisionHit.distance);
-                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
-                        gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
+                    print("Distance dashed: " + collisionHit.distance);
+                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
+                    gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
                 }
                 else
                 {
@@ -135,9 +133,8 @@
                 dashCount -= 1;
                 Invoke("dashCooldown", dashCool);
             }
-            
-             
         }
+
         //SETTERS AND GETTERS
 
         // Sets players health
@@ -145,6 +142,7 @@
         {
             health = i;
         }
+
         // Returns players health
         public float getHealth()
         {
@@ -156,6 +154,7 @@
         {
             dashCount = i;
         }
+
         // Returns players dash count
         public int getDashCount()
         {
@@ -167,6 +166,7 @@
         {
             dashLimit = i;
         }
+
         // Returns players dash limit
         public int getDashLimit()
         {

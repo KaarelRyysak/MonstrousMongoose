@@ -1,20 +1,20 @@
 ﻿namespace Assets
 {
     using UnityEngine;
-    using UnityEngine.UI;
-    using System.Collections.Generic;
-    using System.Runtime.Serialization.Formatters.Binary;
-    using System.IO;
-    using System.Runtime.Serialization;
     using UnityEngine.SceneManagement;
+    using UnityEngine.UI;
 
     [System.Serializable]
     public class GlobalObjectScript : MonoBehaviour
     {
+        public SaveManager saveManager;
+        public SaveGlob saveGlob;
+        public StartMenuScript startMenuScript;
+
         public static GlobalObjectScript Instance;
         private float defaultPlayerHealth;
         private int defaultPlayerDashLimit;
-        
+
         private int playerDashCount;
         private CharacterMovementScript player;
         private EnemyMovementScript enemy;
@@ -23,7 +23,6 @@
         private Text DashTextObject;
         private string healthString = "Health: ";
         private string dashString = "Dash: ";
-        
 
         public GameObject character;
         public GameObject p_enemy;
@@ -47,7 +46,12 @@
 
         private void Start()
         {
-            SaveManager.Instance.loadDataFromDisk();
+            saveManager = GetComponentInChildren<SaveManager>();
+            saveGlob = GetComponentInChildren<SaveGlob>();
+            startMenuScript = GetComponentInChildren<StartMenuScript>();
+            startMenuScript.loadStart(saveManager, saveGlob);
+            saveManager.saveManager(saveGlob);
+            saveManager.loadDataFromDisk();
             // Start player at set health
             defaultPlayerHealth = 100.00f;
             // Set limit on dashes
@@ -55,7 +59,6 @@
             // Start player with set dashes
             playerDashCount = 3;
         }
-
 
         private void Update()
         {
@@ -100,7 +103,7 @@
             return player;
         }
 
-        public void startLevel ()
+        public void startLevel()
         {
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
@@ -119,85 +122,5 @@
             // Instantiates Dash UIText prefab with canvas as parent
             DashTextObject = Instantiate<Text>(DashText, _canvas.transform);
         }
-
     }
-
-    public class SaveGlob
-    {
-        public static SaveGlob Instance;
-        public int settingsField1;
-        public int settingsField2;
-        public int settingsField3;
-
-        // Sets settingsField1
-        public void setSettingsField1(int newSettingsField1)
-        {
-            settingsField1 = newSettingsField1;
-        }
-        // Returns settingsField1
-        public int getSettingsField1()
-        {
-            return settingsField1;
-        }
-
-        // Sets settingsField2
-        public void setSettingsField2(int newSettingsField2)
-        {
-            settingsField2 = newSettingsField2;
-        }
-        // Returns settingsField2
-        public int getSettingsField2()
-        {
-            return settingsField2;
-        }
-
-        // Sets settingsField3
-        public void setSettingsField3(int newSettingsField2)
-        {
-            settingsField2 = newSettingsField2;
-        }
-        // Returns settingsField3
-        public int getSettingsField3()
-        {
-            return settingsField3;
-        }
-    }
-
-    public class SaveManager
-    {
-        public static SaveManager Instance;
-        private SaveGlob saveGlob;    // the Dictionary used to save and load data to/from disk
-        protected string savePath;
-        public SaveManager()
-        {
-         this.savePath = Application.persistentDataPath + "/save.dat";
-         this.saveGlob = new SaveGlob();
-         this.loadDataFromDisk();
-        }
-         /**
-          * Saves the save data to the disk
-          */
-        public void saveDataToDisk()
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Create(savePath);
-            bf.Serialize(file, saveGlob);
-            file.Close();
-        }
- 
-        /**
-         * Loads the save data from the disk
-         */
-        public void loadDataFromDisk()
-        {
-            if(File.Exists(savePath))
-            {
-                BinaryFormatter bf = new BinaryFormatter();
-                FileStream file = File.Open(savePath, FileMode.Open);
-                this.saveGlob = (SaveGlob)bf.Deserialize(file);
-                file.Close();
-            }
-        }
-    }
-    
 }
