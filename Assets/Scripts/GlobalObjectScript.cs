@@ -7,17 +7,16 @@
     [System.Serializable]
     public class GlobalObjectScript : MonoBehaviour
     {
-        public SaveManager saveManager;
-        public SaveGlob saveGlob;
-        public StartMenuScript startMenuScript;
+        private SaveManager saveManager;
+        private StartMenuScript startMenuScript;
+        private CharacterMovementScript player;
+        private EnemyMovementScript enemy;
 
         public static GlobalObjectScript Instance;
         private float defaultPlayerHealth;
         private int defaultPlayerDashLimit;
 
         private int playerDashCount;
-        private CharacterMovementScript player;
-        private EnemyMovementScript enemy;
         private Canvas _canvas;
         private Text HealthTextObject;
         private Text DashTextObject;
@@ -46,12 +45,11 @@
 
         private void Start()
         {
-            saveGlob = GetComponentInChildren<SaveGlob>();
             saveManager = GetComponentInChildren<SaveManager>();
             startMenuScript = GetComponentInChildren<StartMenuScript>();
-            startMenuScript.loadStart(saveManager, saveGlob);
-            saveManager.saveManager(saveGlob);
-            saveManager.loadDataFromDisk();
+            startMenuScript.loadStart(saveManager);
+            saveManager.saveManager();
+            //saveManager.loadDataFromDisk();
             // Start player at set health
             defaultPlayerHealth = 100.00f;
             // Set limit on dashes

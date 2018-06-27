@@ -7,20 +7,19 @@
     [System.Serializable]
     public class SaveManager : MonoBehaviour
     {
+        public static SaveManager Instance;
         private GlobalObjectScript globalObject = GlobalObjectScript.Instance;
-        private SaveGlob saveGlob;    // the Dictionary used to save and load data to/from disk
-        public string savePath;
+        private int settingsField1;
+        protected string savePath;
 
         private void Awake()
         {
-            savePath = Application.persistentDataPath + "/save.dat";
-            // Debug.Log(savePath);
+            this.savePath = Application.persistentDataPath + "/save.dat";
         }
 
-        public void saveManager(SaveGlob saveGlob)
+        public void saveManager()
         {
-            this.saveGlob = saveGlob;
-            loadDataFromDisk(); 
+            this.loadDataFromDisk();
         }
 
         /**
@@ -29,9 +28,10 @@
 
         public void saveDataToDisk()
         {
+            print("Did a save");
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(savePath);
-            bf.Serialize(file, saveGlob);
+            bf.Serialize(file, settingsField1);
             file.Close();
         }
 
@@ -45,9 +45,23 @@
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(savePath, FileMode.Open);
-                saveGlob = (SaveGlob)bf.Deserialize(file);
+                this.settingsField1 = (int)bf.Deserialize(file);
                 file.Close();
             }
         }
+
+        // Sets settingsField1
+        public void setSettingsField1(int newSettingsField1)
+        {
+            settingsField1 = newSettingsField1;
+        }
+
+        // Returns settingsField1
+        public int getSettingsField1()
+        {
+            return settingsField1;
+        }
     }
+
+    
 }
