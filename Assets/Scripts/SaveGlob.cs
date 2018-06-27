@@ -5,9 +5,9 @@
     [System.Serializable]
     public class SaveGlob : MonoBehaviour
     {
-        public int settingsField1;
-        public int settingsField2;
-        public int settingsField3;
+        public int settingsField1 = 0;
+        public int settingsField2 = 0;
+        public int settingsField3 = 0;
 
         // Sets settingsField1
         public void setSettingsField1(int newSettingsField1)

@@ -9,17 +9,18 @@
     {
         private GlobalObjectScript globalObject = GlobalObjectScript.Instance;
         private SaveGlob saveGlob;    // the Dictionary used to save and load data to/from disk
-        protected string savePath;
+        public string savePath;
 
-        private void awake()
+        private void Awake()
         {
-            this.savePath = Application.persistentDataPath + "/save.dat";
+            savePath = Application.persistentDataPath + "/save.dat";
+            // Debug.Log(savePath);
         }
 
         public void saveManager(SaveGlob saveGlob)
         {
             this.saveGlob = saveGlob;
-            this.loadDataFromDisk();
+            loadDataFromDisk(); 
         }
 
         /**
@@ -44,7 +45,7 @@
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(savePath, FileMode.Open);
-                this.saveGlob = (SaveGlob)bf.Deserialize(file);
+                saveGlob = (SaveGlob)bf.Deserialize(file);
                 file.Close();
             }
         }

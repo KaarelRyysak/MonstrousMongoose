@@ -46,8 +46,8 @@
 
         private void Start()
         {
-            saveManager = GetComponentInChildren<SaveManager>();
             saveGlob = GetComponentInChildren<SaveGlob>();
+            saveManager = GetComponentInChildren<SaveManager>();
             startMenuScript = GetComponentInChildren<StartMenuScript>();
             startMenuScript.loadStart(saveManager, saveGlob);
             saveManager.saveManager(saveGlob);

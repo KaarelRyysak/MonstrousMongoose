@@ -246,7 +246,9 @@ Prefab:
       propertyPath: row2Text
       value: 
       objectReference: {fileID: 1210862638}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114597611397053600, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
+    - {fileID: 114058914743376838, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &172524431
@@ -2237,8 +2239,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1528287750}
-        m_MethodName: quitGame
+      - m_Target: {fileID: 0}
+        m_MethodName: makePath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2289,12 +2291,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 14388241}
   m_Script: {fileID: 11500000, guid: e288ba70f57635243bf915d535e3e0cc, type: 3}
---- !u!114 &1528287751 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114622570910383318, guid: 487a0d2b05fbbf447ac8b227312429ed,
-    type: 2}
-  m_PrefabInternal: {fileID: 14388241}
-  m_Script: {fileID: 11500000, guid: 136ad3549afe9734bbd852182b57ac30, type: 3}
 --- !u!1 &1563763120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2885,8 +2881,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1528287751}
-        m_MethodName: saveGame
+      - m_Target: {fileID: 0}
+        m_MethodName: saveDataToDisk
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3053,6 +3049,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1954564258}
+--- !u!1 &1960654289 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1979071927907156, guid: 487a0d2b05fbbf447ac8b227312429ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 14388241}
+--- !u!114 &1960654290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1960654289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc175ff65b644604da7cc0d7848fbb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savePath: 
 --- !u!1 &2019891018
 GameObject:
   m_ObjectHideFlags: 0
