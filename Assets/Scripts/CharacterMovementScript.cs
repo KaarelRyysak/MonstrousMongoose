@@ -19,7 +19,7 @@
         private float health;
         private int dashCount;
         private int dashLimit;
-        private float speed = 0.2f;
+        private float speed = 0.3f;
         private float rotateSpeed = 0.35f;
         private float radius = 12.0f;
         private float dashLength = 12.0f;
