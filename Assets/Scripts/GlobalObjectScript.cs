@@ -7,7 +7,6 @@
     [System.Serializable]
     public class GlobalObjectScript : MonoBehaviour
     {
-        private SaveManager saveManager;
         private StartMenuScript startMenuScript;
         private CharacterMovementScript player;
         private EnemyMovementScript enemy;
@@ -45,10 +44,9 @@
 
         private void Start()
         {
-            saveManager = GetComponentInChildren<SaveManager>();
             startMenuScript = GetComponentInChildren<StartMenuScript>();
-            startMenuScript.loadStart(saveManager);
-            saveManager.saveManager();
+            startMenuScript.loadStart();
+            SaveManager.saveManager();
             //saveManager.loadDataFromDisk();
             // Start player at set health
             defaultPlayerHealth = 100.00f;

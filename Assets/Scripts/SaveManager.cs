@@ -1,37 +1,41 @@
 ﻿namespace Assets
 {
     using System.IO;
+    using System.Collections;
+    using System.Collections.Generic;
     using System.Runtime.Serialization.Formatters.Binary;
     using UnityEngine;
 
     [System.Serializable]
-    public class SaveManager : MonoBehaviour
+    public static class SaveManager
     {
-        public static SaveManager Instance;
-        private GlobalObjectScript globalObject = GlobalObjectScript.Instance;
-        private int settingsField1;
-        protected string savePath;
+        public static List<Game> savedGames = new List<Game>();
+        private static int settingsField1;
+        static string savePath;
 
-        private void Awake()
+        private static void Awake()
         {
-            this.savePath = Application.persistentDataPath + "/save.dat";
+            MonoBehaviour.print("Hi");
+            savePath = Application.persistentDataPath + "/save.dat";
         }
 
-        public void saveManager()
+        public static void saveManager()
         {
-            this.loadDataFromDisk();
+            loadDataFromDisk();
         }
 
         /**
             * Saves the save data to the disk
             */
 
-        public void saveDataToDisk()
+        public static void saveDataToDisk()
         {
-            print("Did a save");
+            MonoBehaviour.print("Saving");
+            SaveManager.savedGames.Add(Game.Instance);
+            savePath = Application.persistentDataPath + "/save.dat";
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(savePath);
-            bf.Serialize(file, settingsField1);
+            bf.Serialize(file, SaveManager.savedGames);
             file.Close();
         }
 
@@ -39,25 +43,27 @@
             * Loads the save data from the disk
             */
 
-        public void loadDataFromDisk()
+        public static void loadDataFromDisk()
         {
+            savePath = Application.persistentDataPath + "/save.dat";
             if (File.Exists(savePath))
             {
+                
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(savePath, FileMode.Open);
-                this.settingsField1 = (int)bf.Deserialize(file);
+                SaveManager.savedGames = (List<Game>)bf.Deserialize(file);
                 file.Close();
             }
         }
 
         // Sets settingsField1
-        public void setSettingsField1(int newSettingsField1)
+        public static void setSettingsField1(int newSettingsField1)
         {
             settingsField1 = newSettingsField1;
         }
 
         // Returns settingsField1
-        public int getSettingsField1()
+        public static int getSettingsField1()
         {
             return settingsField1;
         }
