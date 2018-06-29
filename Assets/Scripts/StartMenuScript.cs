@@ -16,7 +16,7 @@
         public void loadStart()
         {
             SaveManager.loadDataFromDisk();
-            int settingsField1 = Game.Instance.settingsField1;
+            int settingsField1 = SaveManager.saveInstance.settingsField1;
             row1Text.text = "1. Current Value [" + settingsField1.ToString() + "]";
             //row2Text.text = "2. Current Value [" + settingsField1 + "]";
             MonoBehaviour.print("Setting value is: " + settingsField1);

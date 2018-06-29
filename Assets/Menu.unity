@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -246,24 +246,7 @@ Prefab:
       propertyPath: row2Text
       value: 
       objectReference: {fileID: 1210862638}
-    - target: {fileID: 114622570910383318, guid: 487a0d2b05fbbf447ac8b227312429ed,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114622570910383318, guid: 487a0d2b05fbbf447ac8b227312429ed,
-        type: 2}
-      propertyPath: saveManager
-      value: 
-      objectReference: {fileID: 1960654290}
-    - target: {fileID: 114622570910383318, guid: 487a0d2b05fbbf447ac8b227312429ed,
-        type: 2}
-      propertyPath: startMenuScript
-      value: 
-      objectReference: {fileID: 1528287750}
-    m_RemovedComponents:
-    - {fileID: 114597611397053600, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
-    - {fileID: 114058914743376838, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487a0d2b05fbbf447ac8b227312429ed, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &172524431
@@ -3064,22 +3047,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1954564258}
---- !u!1 &1960654289 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1979071927907156, guid: 487a0d2b05fbbf447ac8b227312429ed,
-    type: 2}
-  m_PrefabInternal: {fileID: 14388241}
---- !u!114 &1960654290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1960654289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc175ff65b644604da7cc0d7848fbb1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2019891018
 GameObject:
   m_ObjectHideFlags: 0

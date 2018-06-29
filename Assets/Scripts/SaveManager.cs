@@ -7,14 +7,16 @@
     using UnityEngine;
 
     [System.Serializable]
-    public static class SaveManager
+    public class SaveManager : MonoBehaviour
     {
-        public static List<Game> savedGames = new List<Game>();
+        public static List<Game> savedGames;
+        public static Game saveInstance = new Game();
         private static int settingsField1;
         static string savePath;
 
         private static void Awake()
         {
+            savedGames = new List<Game>();
             MonoBehaviour.print("Hi");
             savePath = Application.persistentDataPath + "/save.dat";
         }
@@ -31,7 +33,7 @@
         public static void saveDataToDisk()
         {
             MonoBehaviour.print("Saving");
-            SaveManager.savedGames.Add(Game.Instance);
+            SaveManager.savedGames.Add(SaveManager.saveInstance);
             savePath = Application.persistentDataPath + "/save.dat";
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(savePath);
