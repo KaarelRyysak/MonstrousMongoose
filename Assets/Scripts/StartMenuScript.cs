@@ -16,7 +16,7 @@
         public void loadStart()
         {
             SaveManager.loadDataFromDisk();
-            int settingsField1 = SaveManager.saveInstance.settingsField1;
+            int settingsField1 = SaveManager.gameSettings.settingsField1;
             row1Text.text = "1. Current Value [" + settingsField1.ToString() + "]";
             //row2Text.text = "2. Current Value [" + settingsField1 + "]";
             MonoBehaviour.print("Setting value is: " + settingsField1);
@@ -52,20 +52,20 @@
         public void setRow1To1()
         {
             row1Text.text = "1. Current Value [1]";
-            SaveManager.setSettingsField1(1);
+            SaveManager.gameSettings.settingsField1 = 1;
         }
 
         public void setRow1To2()
         {
             row1Text.text = "1. Current Value [2]";
 
-            SaveManager.setSettingsField1(2);
+            SaveManager.gameSettings.settingsField1 = 2;
         }
 
         public void setRow1To3()
         {
             row1Text.text = "1. Current Value [3]";
-            SaveManager.setSettingsField1(3);
+            SaveManager.gameSettings.settingsField1 = 3;
         }
         /** 
         public void setRow2To1()

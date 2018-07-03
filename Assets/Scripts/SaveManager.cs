@@ -10,14 +10,16 @@
     public class SaveManager : MonoBehaviour
     {
         public static List<Game> savedGames;
-        public static Game saveInstance = new Game();
-        private static int settingsField1;
+        public static Settings gameSettings;
+        public static Game gameInstance;
         static string savePath;
 
-        private static void Awake()
+        private void Awake()
         {
             savedGames = new List<Game>();
-            MonoBehaviour.print("Hi");
+            gameInstance = new Game();
+            gameSettings = new Settings();
+            MonoBehaviour.print("SaveManager woke up");
             savePath = Application.persistentDataPath + "/save.dat";
         }
 
@@ -33,11 +35,10 @@
         public static void saveDataToDisk()
         {
             MonoBehaviour.print("Saving");
-            SaveManager.savedGames.Add(SaveManager.saveInstance);
-            savePath = Application.persistentDataPath + "/save.dat";
+            //savedGames.Add(SaveManager.gameInstance);
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(savePath);
-            bf.Serialize(file, SaveManager.savedGames);
+            bf.Serialize(file, gameSettings);
             file.Close();
         }
 
@@ -47,28 +48,19 @@
 
         public static void loadDataFromDisk()
         {
-            savePath = Application.persistentDataPath + "/save.dat";
             if (File.Exists(savePath))
             {
                 
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(savePath, FileMode.Open);
-                SaveManager.savedGames = (List<Game>)bf.Deserialize(file);
+                gameSettings = (Settings)bf.Deserialize(file);
                 file.Close();
             }
         }
 
-        // Sets settingsField1
-        public static void setSettingsField1(int newSettingsField1)
-        {
-            settingsField1 = newSettingsField1;
-        }
+        
 
-        // Returns settingsField1
-        public static int getSettingsField1()
-        {
-            return settingsField1;
-        }
+       
     }
 
     
