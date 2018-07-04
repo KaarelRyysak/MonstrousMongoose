@@ -1,6 +1,7 @@
 ﻿namespace Assets
 {
     using UnityEngine;
+    using UnityEngine.Playables;
 
     public class CharacterMovementScript : MonoBehaviour
     {
@@ -14,6 +15,7 @@
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
         private GameObject _holoChar;
         private float distanceTravelled;
+        public AudioClip otherClip;
 
         private float dashDamage = 10.0f;
         private float health;
@@ -28,6 +30,7 @@
         public GameObject attack;
         public GameObject holoChar;
         public GameObject p_TargetAnalyzer;
+        AudioSource pew;
 
         // Use this for initialization
         private void Start()
@@ -37,6 +40,7 @@
             controller = GetComponent<CharacterController>();
             target = Instantiate<GameObject>(p_target, new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z + 1), gameObject.transform.rotation);
             _holoChar = Instantiate<GameObject>(holoChar, target.transform.position, gameObject.transform.rotation);
+            pew = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -104,7 +108,7 @@
             if (Input.GetKeyDown(KeyCode.Mouse1) && dashCount > 0)
             {
                 RaycastHit hit;
-
+                pew.Play();
                 GameObject _targetAnalyzer = Instantiate<GameObject>(p_TargetAnalyzer, target.transform.position, target.transform.rotation);
 
                 if (Physics.Linecast(gameObject.transform.position, _targetAnalyzer.transform.position, out hit))
