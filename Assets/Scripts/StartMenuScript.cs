@@ -20,8 +20,8 @@
             int settingsField2 = SaveManager.gameSettings.settingsField2;
             row1Text.text = "1. Current Value [" + settingsField1.ToString() + "]";
             row2Text.text = "1. Current Value [" + settingsField2.ToString() + "]";
-            print("Value 1 is: " + settingsField1);
-            print("Value 2 is: " + settingsField2);
+            //print("Value 1 is: " + settingsField1);
+            //print("Value 2 is: " + settingsField2);
         }
 
         public void startGame()

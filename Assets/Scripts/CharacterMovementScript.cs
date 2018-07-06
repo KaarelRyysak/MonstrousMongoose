@@ -16,13 +16,14 @@
         private GameObject _holoChar;
         private float distanceTravelled;
         public AudioClip otherClip;
+        public Sprite p_trailSprite;
 
         private float dashDamage = 10.0f;
         private float health;
         private int dashCount;
         private int dashLimit;
-        private float speed = 0.3f;
-        private float rotateSpeed = 0.35f;
+        private float speed = 0.2f;
+        private float rotateSpeed = 0.4f;
         private float radius = 12.0f;
         private float dashLength = 12.0f;
         public GameObject p_target;
@@ -41,6 +42,7 @@
             target = Instantiate<GameObject>(p_target, new Vector3(gameObject.transform.position.x, 1, gameObject.transform.position.z + 1), gameObject.transform.rotation);
             _holoChar = Instantiate<GameObject>(holoChar, target.transform.position, gameObject.transform.rotation);
             pew = GetComponent<AudioSource>();
+            
         }
 
         // Update is called once per frame
@@ -109,14 +111,15 @@
             {
                 RaycastHit hit;
                 pew.Play();
+                
                 GameObject _targetAnalyzer = Instantiate<GameObject>(p_TargetAnalyzer, target.transform.position, target.transform.rotation);
 
                 if (Physics.Linecast(gameObject.transform.position, _targetAnalyzer.transform.position, out hit))
                 {
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        hit.transform.gameObject.GetComponent<EnemyMovementScript>().takeDamage(dashDamage);
-                        print("Enemy Health:" + hit.transform.gameObject.GetComponent<EnemyMovementScript>().getHealth());
+                        hit.transform.gameObject.GetComponent<WalkerScript>().takeDamage(dashDamage);
+                        //print("Enemy Health:" + hit.transform.gameObject.GetComponent<WalkerScript>().getHealth());
                     }
                 }
                 Destroy(_targetAnalyzer);
@@ -126,6 +129,7 @@
                     print("Distance dashed: " + collisionHit.distance);
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
                     gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
+                    trailSprite = Instantiate<GameObject>(holoChar, target.transform.position, gameObject.transform.rotation);
                 }
                 else
                 {

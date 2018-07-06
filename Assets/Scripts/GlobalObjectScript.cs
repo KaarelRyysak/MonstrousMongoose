@@ -9,7 +9,7 @@
     {
         private StartMenuScript startMenuScript;
         private CharacterMovementScript player;
-        private EnemyMovementScript enemy;
+        private WalkerScript enemy;
 
         public static GlobalObjectScript Instance;
         private float defaultPlayerHealth;
@@ -40,20 +40,25 @@
             {
                 Destroy(gameObject);
             }
-        }
+            print("Started");
+            if (GetComponentInChildren<StartMenuScript>())
+            {
+                startMenuScript = GetComponentInChildren<StartMenuScript>();
+                startMenuScript.loadStart();
+            }
 
-        private void Start()
-        {
-            startMenuScript = GetComponentInChildren<StartMenuScript>();
-            startMenuScript.loadStart();
             SaveManager.saveManager();
-            //saveManager.loadDataFromDisk();
             // Start player at set health
             defaultPlayerHealth = 100.00f;
             // Set limit on dashes
             defaultPlayerDashLimit = 3;
             // Start player with set dashes
             playerDashCount = 3;
+        }
+
+        private void Start()
+        {
+            
         }
 
         private void Update()
@@ -101,10 +106,11 @@
 
         public void startLevel()
         {
+            print("Level Started");
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
             // Instantiate an enemy
-            enemy = Instantiate<GameObject>(p_enemy, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<EnemyMovementScript>();
+            enemy = Instantiate<GameObject>(p_enemy, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<WalkerScript>();
             // Sets player health on player gameobject
             player.setHealth(defaultPlayerHealth);
             // Sets players dashes on player gameobject

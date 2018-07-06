@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114418752131756978}
   - component: {fileID: 143680325060805092}
   m_Layer: 10
-  m_Name: P_enemy
+  m_Name: p_walker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,6 +183,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668f4b01a82877c499801ca8d8b6e38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalController: {fileID: 0}
+  player: {fileID: 0}
+  _player: {fileID: 0}
+  health: 20
+  movementSpeed: 0.1
 --- !u!135 &135294569353120884
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -22,8 +22,8 @@
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<EnemyMovementScript>().takeDamage(damage);
-                Debug.Log(other.name + other.GetComponent<EnemyMovementScript>().getHealth());
+                other.gameObject.GetComponent<WalkerScript>().takeDamage(damage);
+                Debug.Log(other.name + other.GetComponent<WalkerScript>().getHealth());
             }
         }
 

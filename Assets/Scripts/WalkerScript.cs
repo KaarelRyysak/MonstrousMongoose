@@ -2,15 +2,16 @@
 {
     using UnityEngine;
 
-    public class EnemyMovementScript : MonoBehaviour
+    public class WalkerScript : MonoBehaviour
     {
         //CharacterController controller;
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
 
+
         private CharacterMovementScript player;
         private GameObject _player;
         private float health = 20.0f;
-        private float movementSpeed = 0.1f;
+        private float movementSpeed = 0.07f;
 
         // Use this for initialization
         private void Start()
@@ -28,7 +29,7 @@
             gameObject.transform.LookAt(lookAt);
 
             //Enemy moves toward player
-            //gameObject.transform.Translate(Vector3.forward * movementSpeed);
+            gameObject.transform.Translate(Vector3.forward * movementSpeed);
 
             //Destroy the object if health reaches 0
             if (health <= 0.0f)

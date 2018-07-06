@@ -19,7 +19,6 @@
             savedGames = new List<Game>();
             gameInstance = new Game();
             gameSettings = new Settings();
-            MonoBehaviour.print("SaveManager woke up");
             savePath = Application.persistentDataPath + "/save.dat";
         }
 
@@ -34,7 +33,6 @@
 
         public static void saveDataToDisk()
         {
-            MonoBehaviour.print("Saving");
             //savedGames.Add(SaveManager.gameInstance);
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(savePath);
