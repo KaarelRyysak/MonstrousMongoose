@@ -366,13 +366,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherClip: {fileID: 0}
-  TrailSprite: {fileID: 21300000, guid: 310c91315c22bc04ab2ac70b108c77a8, type: 3}
   p_target: {fileID: 1865746469178694, guid: af75ec4d63672b84683ecb7af90c77c1, type: 2}
   target: {fileID: 1865746469178694, guid: af75ec4d63672b84683ecb7af90c77c1, type: 2}
   attack: {fileID: 1867323892512928, guid: 0459c91333c87a540a568a7c6689f694, type: 2}
   holoChar: {fileID: 1017495229114244, guid: c5d4eb7a300b8544d9b0867871c65e2b, type: 2}
   p_TargetAnalyzer: {fileID: 1667707461484640, guid: 3610c09852f4e374cad044f7153758ae,
     type: 2}
+  p_trail: {fileID: 1985345013569022, guid: d99aaa46c4a80a24ca728d7eb5ed0fac, type: 2}
 --- !u!136 &136195624026483458
 CapsuleCollider:
   m_ObjectHideFlags: 1

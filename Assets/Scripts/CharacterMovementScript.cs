@@ -16,7 +16,7 @@
         private GameObject _holoChar;
         private float distanceTravelled;
         public AudioClip otherClip;
-        public Sprite p_trailSprite;
+        
 
         private float dashDamage = 10.0f;
         private float health;
@@ -31,6 +31,8 @@
         public GameObject attack;
         public GameObject holoChar;
         public GameObject p_TargetAnalyzer;
+        public GameObject p_trail;
+        private GameObject trail;
         AudioSource pew;
 
         // Use this for initialization
@@ -129,7 +131,9 @@
                     print("Distance dashed: " + collisionHit.distance);
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
                     gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
-                    trailSprite = Instantiate<GameObject>(holoChar, target.transform.position, gameObject.transform.rotation);
+                    trail = Instantiate<GameObject>(p_trail, gameObject.transform.position, gameObject.transform.rotation);
+                    trail.transform.localScale = new Vector3(0.5f, 0.5f, distanceTravelled);
+                    trail.transform.Translate(Vector3.forward * (distanceTravelled * -0.5f));
                 }
                 else
                 {
@@ -137,6 +141,9 @@
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distanceTravelled, Color.red, 1);
                     Debug.Log(distanceTravelled);
                     gameObject.transform.Translate(Vector3.forward * distanceTravelled);
+                    trail = Instantiate<GameObject>(p_trail, gameObject.transform.position, gameObject.transform.rotation);
+                    trail.transform.localScale = new Vector3(0.5f, 0.5f, distanceTravelled);
+                    trail.transform.Translate(Vector3.forward * (distanceTravelled * -0.5f));
                 }
                 dashCount -= 1;
                 Invoke("dashCooldown", dashCool);
