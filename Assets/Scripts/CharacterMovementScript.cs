@@ -14,7 +14,7 @@
         private float dashCool = 1.50f;
         private GlobalObjectScript globalController = GlobalObjectScript.Instance;
         private GameObject _holoChar;
-        private float distanceTravelled;
+        
         public AudioClip otherClip;
         
 
@@ -111,6 +111,7 @@
             //Dash attack when right mouse is pressed
             if (Input.GetKeyDown(KeyCode.Mouse1) && dashCount > 0)
             {
+                
                 RaycastHit hit;
                 pew.Play();
                 
@@ -132,12 +133,12 @@
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * collisionHit.distance, Color.red, 1);
                     gameObject.transform.Translate(Vector3.forward * (collisionHit.distance - 0.6f));
                     trail = Instantiate<GameObject>(p_trail, gameObject.transform.position, gameObject.transform.rotation);
-                    trail.transform.localScale = new Vector3(0.5f, 0.5f, distanceTravelled);
-                    trail.transform.Translate(Vector3.forward * (distanceTravelled * -0.5f));
+                    trail.transform.localScale = new Vector3(0.5f, 0.5f, collisionHit.distance);
+                    trail.transform.Translate(Vector3.forward * (collisionHit.distance * -0.5f));
                 }
                 else
                 {
-                    distanceTravelled = Mathf.Clamp((Vector3.Distance(gameObject.transform.position, target.transform.position) - 0.01f), 0.0f, dashLength);
+                    float distanceTravelled = Mathf.Clamp((Vector3.Distance(gameObject.transform.position, target.transform.position) - 0.01f), 0.0f, dashLength);
                     Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distanceTravelled, Color.red, 1);
                     Debug.Log(distanceTravelled);
                     gameObject.transform.Translate(Vector3.forward * distanceTravelled);

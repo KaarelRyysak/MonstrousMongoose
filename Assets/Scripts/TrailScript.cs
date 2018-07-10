@@ -8,15 +8,19 @@ public class TrailScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        timer = 0;
-	}
+        StartCoroutine(Example());
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Time.fixedTime > 2)
-        {
-            Destroy(gameObject);
-        }
+        
 	}
+
+    IEnumerator Example()
+    {
+        
+        yield return new WaitForSeconds(0.4f);
+        Destroy(gameObject);
+    }
 }
