@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 135294569353120884}
   - component: {fileID: 114418752131756978}
   - component: {fileID: 143680325060805092}
+  - component: {fileID: 195485522583660070}
   m_Layer: 10
   m_Name: p_walker
   m_TagString: Enemy
@@ -183,11 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668f4b01a82877c499801ca8d8b6e38c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalController: {fileID: 0}
-  player: {fileID: 0}
-  _player: {fileID: 0}
-  health: 20
-  movementSpeed: 0.1
+  agent: {fileID: 0}
 --- !u!135 &135294569353120884
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -217,3 +214,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195485522583660070
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123073779026292}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

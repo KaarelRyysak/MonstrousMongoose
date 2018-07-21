@@ -1,6 +1,7 @@
 ﻿namespace Assets
 {
     using UnityEngine;
+    using UnityEngine.AI;
 
     public class WalkerScript : MonoBehaviour
     {
@@ -12,6 +13,7 @@
         private GameObject _player;
         private float health = 20.0f;
         private float movementSpeed = 0.07f;
+        public NavMeshAgent agent;
 
         // Use this for initialization
         private void Start()
@@ -24,9 +26,13 @@
         // Update is called once per frame
         private void Update()
         {
+            /**
             Vector3 lookAt = _player.transform.position;
             lookAt.y = gameObject.transform.position.y;
             gameObject.transform.LookAt(lookAt);
+            **/
+
+            agent.SetDestination(_player.transform.position);
 
             //Enemy moves toward player
             gameObject.transform.Translate(Vector3.forward * movementSpeed);
