@@ -111,7 +111,7 @@
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
             // Instantiate a walker
-            enemy = Instantiate<GameObject>(p_walker, new Vector3(5.0f, 1.0f, 2), gameObject.transform.rotation).GetComponent<WalkerScript>();
+            //enemy = Instantiate<GameObject>(p_walker, new Vector3(5.0f, 1.0f, 2), gameObject.transform.rotation).GetComponent<WalkerScript>();
             // Instantiate a shooter
             enemy = Instantiate<GameObject>(p_shooter, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<WalkerScript>();
             // Sets player health on player gameobject

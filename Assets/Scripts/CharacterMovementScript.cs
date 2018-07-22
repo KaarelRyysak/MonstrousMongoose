@@ -151,6 +151,12 @@
             }
         }
 
+        void OnCollisionEnter(Collision collision)
+        {
+            //Output the Collider's GameObject's name
+            Debug.Log(collision.collider.name);
+            
+        }
         //SETTERS AND GETTERS
 
         // Sets players health
