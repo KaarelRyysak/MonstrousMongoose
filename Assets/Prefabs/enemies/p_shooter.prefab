@@ -22,8 +22,9 @@ GameObject:
   - component: {fileID: 33506844407052038}
   - component: {fileID: 23267141630504422}
   - component: {fileID: 135435933051046606}
-  - component: {fileID: 114566515132057738}
   - component: {fileID: 143196142884204136}
+  - component: {fileID: 195326205795737842}
+  - component: {fileID: 114036821019118104}
   m_Layer: 10
   m_Name: p_shooter
   m_TagString: Enemy
@@ -172,7 +173,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114566515132057738
+--- !u!114 &114036821019118104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -180,14 +181,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1302500511440012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 668f4b01a82877c499801ca8d8b6e38c, type: 3}
+  m_Script: {fileID: 11500000, guid: f44e07a74f100314db8062be6d1b069a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalController: {fileID: 0}
-  player: {fileID: 0}
-  _player: {fileID: 0}
-  health: 20
-  movementSpeed: 0.1
+  p_projectile: {fileID: 1311884247933390, guid: 7f4018e0ce3559345aa5d4b953c02898,
+    type: 2}
+  agent: {fileID: 195326205795737842}
 --- !u!135 &135435933051046606
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -217,3 +216,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &195326205795737842
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1302500511440012}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

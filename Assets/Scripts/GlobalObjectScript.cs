@@ -23,7 +23,8 @@
         private string dashString = "Dash: ";
 
         public GameObject character;
-        public GameObject p_enemy;
+        public GameObject p_walker;
+        public GameObject p_shooter;
         public Canvas canvas;
         public Text HealthText;
         public Text DashText;
@@ -95,7 +96,7 @@
         // Returns Enemy game object
         public GameObject getEnemy()
         {
-            return p_enemy;
+            return p_walker;
         }
 
         // Returns player gameObject
@@ -109,8 +110,10 @@
             print("Level Started");
             // Instantiate player
             player = Instantiate<GameObject>(character, new Vector3(0, 1.0f, 0), gameObject.transform.rotation).GetComponent<CharacterMovementScript>();
-            // Instantiate an enemy
-            enemy = Instantiate<GameObject>(p_enemy, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<WalkerScript>();
+            // Instantiate a walker
+            enemy = Instantiate<GameObject>(p_walker, new Vector3(5.0f, 1.0f, 2), gameObject.transform.rotation).GetComponent<WalkerScript>();
+            // Instantiate a shooter
+            enemy = Instantiate<GameObject>(p_shooter, new Vector3(5.0f, 1.0f, 0), gameObject.transform.rotation).GetComponent<WalkerScript>();
             // Sets player health on player gameobject
             player.setHealth(defaultPlayerHealth);
             // Sets players dashes on player gameobject
