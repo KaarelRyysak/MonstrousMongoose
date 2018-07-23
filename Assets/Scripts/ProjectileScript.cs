@@ -20,10 +20,10 @@ public class ProjectileScript : MonoBehaviour {
 
 
     }
-    void OnCollisionTrigger(Collision collision)
+    void OnTriggerEnter(Collider otherCollider)
     {
         //Output the Collider's GameObject's name
-        Debug.Log(collision.collider.name);
+        Debug.Log(otherCollider.gameObject.name);
     }
 
 
