@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ProjectileScript : MonoBehaviour {
 
-    private CharacterController controller;
     private float movementSpeed = 0.09f;
 
     // Use this for initialization
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
         
 }
 
@@ -18,11 +16,11 @@ public class ProjectileScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        controller.Move(transform.forward * movementSpeed);
+        gameObject.transform.Translate(Vector3.forward * movementSpeed);
 
-        
+
     }
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionTrigger(Collision collision)
     {
         //Output the Collider's GameObject's name
         Debug.Log(collision.collider.name);

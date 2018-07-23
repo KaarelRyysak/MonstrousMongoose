@@ -54,7 +54,7 @@
             while (true)
             {
                 yield return new WaitForSeconds(waitTime);
-                Instantiate<GameObject>(p_projectile, (gameObject.transform.position + transform.forward), gameObject.transform.rotation).GetComponent<ProjectileScript>();
+                Instantiate<GameObject>(p_projectile, (gameObject.transform.position), gameObject.transform.rotation).GetComponent<ProjectileScript>();
             }
         }
 

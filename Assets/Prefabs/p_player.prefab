@@ -61,7 +61,6 @@ GameObject:
   - component: {fileID: 143949496411824128}
   - component: {fileID: 114176328198856584}
   - component: {fileID: 82944072837127524}
-  - component: {fileID: 54239683026217100}
   m_Layer: 0
   m_Name: p_player
   m_TagString: Untagged
@@ -236,21 +235,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054769562026386}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54239683026217100
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1770425977016338}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &65164894342756358
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -396,7 +380,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1770425977016338}
   m_Material: {fileID: 13400000, guid: eb66765c2bcdc084fbdaed1e43e10f0a, type: 2}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
