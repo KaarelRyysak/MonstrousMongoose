@@ -14,6 +14,8 @@
         private float health = 20.0f;
         private float movementSpeed = 0.07f;
         public NavMeshAgent agent;
+        public bool counted = false;
+        public GameObject parentRoom;
 
         // Use this for initialization
         private void Start()
@@ -40,6 +42,7 @@
             //Destroy the object if health reaches 0
             if (health <= 0.0f)
             {
+                parentRoom.GetComponent<cameraMovement>().enemyCount--;
                 Destroy(gameObject);
             }
         }

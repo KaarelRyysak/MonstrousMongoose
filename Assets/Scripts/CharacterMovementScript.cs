@@ -121,8 +121,16 @@
                 {
                     if (hit.transform.gameObject.CompareTag("Enemy"))
                     {
-                        hit.transform.gameObject.GetComponent<WalkerScript>().takeDamage(dashDamage);
-                        //print("Enemy Health:" + hit.transform.gameObject.GetComponent<WalkerScript>().getHealth());
+                        if (hit.transform.gameObject.name.Equals("p_shooter(Clone)"))
+                        {
+                            hit.transform.gameObject.GetComponent<ShooterScript>().takeDamage(dashDamage);
+                            print("Enemy Health:" + hit.transform.gameObject.GetComponent<ShooterScript>().getHealth());
+                        }
+                        if (hit.transform.gameObject.name.Equals("p_walker(Clone)"))
+                        {
+                            hit.transform.gameObject.GetComponent<WalkerScript>().takeDamage(dashDamage);
+                            print("Enemy Health:" + hit.transform.gameObject.GetComponent<WalkerScript>().getHealth());
+                        }
                     }
                 }
                 Destroy(_targetAnalyzer);

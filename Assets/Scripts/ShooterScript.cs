@@ -17,6 +17,9 @@
         private float movementSpeed = 0.07f;
         public NavMeshAgent agent;
         private IEnumerator coroutine;
+        private GameObject tempProj;
+        public bool counted = false;
+        public GameObject parentRoom;
 
         // Use this for initialization
         private void Start()
@@ -45,6 +48,7 @@
             //Destroy the object if health reaches 0
             if (health <= 0.0f)
             {
+                parentRoom.GetComponent<cameraMovement>().enemyCount--;
                 Destroy(gameObject);
             }
         }
@@ -54,7 +58,8 @@
             while (true)
             {
                 yield return new WaitForSeconds(waitTime);
-                Instantiate<GameObject>(p_projectile, (gameObject.transform.position), gameObject.transform.rotation).GetComponent<ProjectileScript>();
+                tempProj = Instantiate<GameObject>(p_projectile, (gameObject.transform.position), gameObject.transform.rotation);
+                tempProj.GetComponent<ProjectileScript>().setParent(gameObject.transform.position);
             }
         }
 

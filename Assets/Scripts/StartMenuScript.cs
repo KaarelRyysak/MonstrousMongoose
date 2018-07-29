@@ -27,6 +27,7 @@
         public void startGame()
         {
             SceneManager.LoadScene("Murderous Mongoose", LoadSceneMode.Single);
+            //GlobalObjectScript.Instance.startLevel();
         }
 
         public void optionsMenu()

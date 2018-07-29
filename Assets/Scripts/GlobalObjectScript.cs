@@ -14,6 +14,7 @@
         public static GlobalObjectScript Instance;
         private float defaultPlayerHealth;
         private int defaultPlayerDashLimit;
+        public Camera cam;
 
         private int playerDashCount;
         private Canvas _canvas;
