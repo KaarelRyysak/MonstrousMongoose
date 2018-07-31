@@ -33,6 +33,7 @@
         public GameObject p_TargetAnalyzer;
         public GameObject p_trail;
         private GameObject trail;
+        public GameObject arrow;
         AudioSource pew;
 
         // Use this for initialization
@@ -74,9 +75,10 @@
             gameObject.transform.LookAt(lookAt);
 
             //Cast a ray in front of the character
-            int collisionLayerMask = 1 << 8;
+            int collisionLayerMask = (1 << 8) + (1 << 11);
+            int previewLayerMask = (1 << 11);
             Ray forwardRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-            RaycastHit collisionHit;
+            RaycastHit collisionHit, previewHit;
 
             //Position holoChar
             bool mainRayCollision = false;
@@ -97,7 +99,11 @@
                     Vector3 clampedLocale = gameObject.transform.position + v;
                     _holoChar.transform.SetPositionAndRotation(clampedLocale, gameObject.transform.rotation);
                 }
+                
             }
+            Physics.Raycast(forwardRay, out previewHit, Mathf.Infinity, previewLayerMask, QueryTriggerInteraction.Ignore);
+            arrow.transform.localScale = new Vector3(1, 1, previewHit.distance);
+            Debug.Log(previewHit.distance);
 
             //Character Movement
             Vector3 characterMovement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));

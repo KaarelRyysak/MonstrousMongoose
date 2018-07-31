@@ -21,7 +21,7 @@ public class ProjectileScript : MonoBehaviour {
     void OnTriggerEnter(Collider otherCollider)
     {
         //Output the Collider's GameObject's name
-        Debug.Log(otherCollider.gameObject.name);
+        //Debug.Log(otherCollider.gameObject.name);
     }
 
     public void setParent (Vector3 x)
