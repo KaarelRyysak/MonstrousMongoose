@@ -101,7 +101,7 @@
                 }
                 
             }
-            Physics.Raycast(forwardRay, out previewHit, Mathf.Infinity, previewLayerMask, QueryTriggerInteraction.Ignore);
+            Physics.Raycast(forwardRay, out previewHit, Mathf.Infinity, previewLayerMask, QueryTriggerInteraction.Collide);
             arrow.transform.localScale = new Vector3(1, 1, previewHit.distance);
             Debug.Log(previewHit.distance);
 
